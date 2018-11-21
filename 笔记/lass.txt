@@ -1,0 +1,298 @@
+1、什么是less？
+	less是一个CSS预编译器，它可以扩展CSS语言，添加功能如允许变量，混合，函数，和许多其他的技术，让你的CSS更具维护性，主题性，扩展性
+注释：/**/
+
+2、http://www.lesscss.org
+   http://www.lesscss.net
+
+3、less编译工具
+	Koala：http://koala-app.com
+	WinLess http://winless.org
+	codekit http://incident57.com/codekit/index.html
+
+4、
+	(1)less定义变量
+	@color:green;
+	2、作为选择器和属性来使用
+	@kuandu:width;
+	.@{kuandu}{@{kuandu}:100px}
+	3、作为url;url('@{url}')
+	@url:'aa.png'
+	.box{
+		background:url(@url)
+	}
+	4、延迟加载（less拥有js的变量预解析，但是less会赋值）
+	5、定义多个相同名称的变量(js的覆盖性)
+	@num:1;
+	.a{
+		.b{
+			@num:4;
+			width:@num;
+			@num:5;
+		}
+		@num:3;
+	}
+	结果：width:5
+5、混合：就是将一系列属性从一系列规则集引入另一个规则集中；
+	（1）普通混合
+	.font_hn{
+		color:red;
+	}
+	h1{
+		font-size:28px;
+		.font_hn;
+	}
+	h2{
+		font-size:24px;
+		font_hn;
+	}
+	（2）不带输出混合
+	.font_hn{
+		color:red;
+	}
+	h1{
+		font-size:28px;
+		.font_hn;
+	}
+	h2{
+		font-size:24px;
+		font_hn;
+	}
+	（3）带选择器的混合
+	.hunhe(){
+		&:hover{
+			color:red;
+		}
+	}
+	h1{
+		.hunhe();
+	}
+	(4)带参数的混合
+	.border(@color){
+		border:1px solid @color;
+	}
+	h1{
+		.border(red)
+	}
+	h1{
+		.border(green)
+	}
+	(5)带参数并且有默认值的混合
+	.border(@color:red){
+		border:1px solid @color;
+	}
+	h1{
+		.border()
+	}
+	h1{
+		.border(green)
+	}
+	(6)带有多个参数的混合
+	.border(@color){
+		border:1px solid @color;
+	}
+	h1{
+		.border(red)
+	}
+	h1{
+		.border(green)
+	}
+	(5)带参数并且有默认值的混合
+	.mixin(@color:red){
+		border:1px solid @color;
+	}
+	h1{
+		.mixin()
+	}
+	h1{
+		.mixin(green)
+	}
+	(6)带有多个参数的混合
+	.mixin(@color;@paading;@margin:6){
+		border:1px solid @color;
+	}
+	h1{
+		.mixin(1,2,3)
+	}
+	h1{
+		.mixin(1,2,3;)
+	}
+	注意：有分号的时候以分号为主
+	（7）命名空间
+	.mixin(@color;@paading;@margin:6){
+		border:1px solid @color;
+	}
+	h1{
+		.mixin(green;@margin:6;@padding:1)
+	}
+	注意：有变量的时候可以不按顺序来传参
+	(8)arguments变量
+	.border(@x:solid,@c:red){
+		border:21px @arguments;
+	}
+	.div1{
+		.border(solid)
+	}
+	注意@arguments变量会等于说把所有的参数都用上
+	(9)匹配模式
+	.border(aa,@color:red){
+		border-radius:@color;
+	}
+	.border(aa1,@color:green){
+		border-radius:@color;
+	}
+	.box{
+		.border(aa1,yellow);
+	}
+	注意：多个相同名字的集合，利用匹配模式来调用某一个
+	(10)得到混合变量的返回值
+	.average(@x,@y){
+		@average:((Ax+@y)/2);
+		@he:(@x+@y);
+	}
+	div{
+		.average(50,30);
+		padding:@average;
+		margin:@he;
+	}
+5、嵌套规则
+	使用嵌套规则使CSS更加简洁明了
+
+6、运算
+注意：只要有一个有单位，别的数值都会使用这个单位
+	.wp(@num){
+		width:@num+20;
+	}
+	.box{
+		.wp(10px)
+	}
+7、函数
+	rgb(@num1,@num2,@num3)
+	blue()
+	round()
+	ceil()
+	percentage()
+8、命名空间
+	.a(){
+		.b{
+			color:red;
+			.c{
+				color:yellow;
+			}
+			.ff{
+				color:pink;
+			}
+		}
+	}
+	.d{
+		.a>.b
+	}
+
+9、作用域
+
+10、@import引入
+	
+11、!important
+
+12、表达式的判断
+	.aa(@num) when(@num<1){
+		color:green
+	}
+	.aa(@num) when(@num>1){
+		color:red;
+	}
+	注意：when相当于if
+13、循环（递归调用）
+	.aa(@i:1)when(@i<12){
+		width:@i*100px;
+		.aa(@i+1);
+	}
+	.box{
+		.aa();
+	}
+14、合并属性
+	+合并属性，以逗号分割属性值
+	background+:red;
+	background+_:no-repect;
+	+_合并属性，以空格分割属性值
+
+15、less内置函数
+	color()解析颜色，讲代表颜色的字符转换为颜色值
+	color('red')
+	covert()将数字从一种单位转换到另一种单位
+	covert(20cm,m)
+	unit()删除或更换单位
+	default();只能在边界条件中使用，没有匹配到自定义函数的时候回返回true否则返回false；（除了他没本身之外有匹配成功的返回true）
+	.aa(@x)when not(default()){
+		aa:@x;
+	}
+	not default（除了自身以外至少有一个匹配成功才为true）
+	unit()删除或更换单位
+	unit(1s)	删除
+	unit(1s,ms)	转换
+	字符串函数
+	escape()将输入字符串中的url特殊字符进行编码处理
+	不转译的编码：，/ @ & + ' ! $
+	转译的编码：# ^ ( ) | >  < ]  [ =
+	aa{
+		color:escape('hah>dd')
+	}
+	
+	e()函数 避免编译等于~
+	div{
+		width:e('100px-20px');
+		||
+		width:~'100px-20px';
+	}
+
+	%函数 格式化字符串
+	%()函数
+	width:%('%A %a','aa','bb'); 
+	width:%('%S %S',"aa","bb")
+	a有双引号
+	A格式化双引号
+	S没有双引号
+
+	replace()函数
+	color:replace('hello,word',"word","less")
+	replace('字符串','要被替换的','用来替换的')
+
+	length()函数
+	color1：length(a b)   //2
+
+	extract()返回集合当中指定索引的值
+	@arr:'aa','bb','cc';
+	aa:extract(@arr,1);
+
+	Math函数
+	ceil()向上取整
+	floor()向下取整
+	percentage()浮点型转换为百分比
+	round()取整和四舍五入
+	sqrt()计算开方根
+	abs()计算绝对值
+	sin()计算弧度的正弦值 弧度转换正弦值
+	asin()反正弦值	正弦值转换弧度
+	cos()余弦值
+	tan()正切值
+	pi()3.1415926
+	pow()乘方
+	mod()取余
+	min(1px,2px,3px);取最小
+	max(2px,3px,4px);取最大值
+	
+
+	isnumber()判断是不是数字
+	isstring()判断是不是一个字符串
+	iscolor()是不是一个颜色
+	iskeyword()是不是一个关键字
+	isurl()是不是一个url地址
+	ispixel()是不是px像素长度单位
+	isem()是不是em长度单位
+	ispercentage()是不是带有百分百
+	isunit()是不是带有指定单位的数字
+	rgb()十进制创建颜色对象
+	rbg(255,255,255)-->#fff
+	rgb()创建透明颜色对象
+	rgba(255,255,255,0.5);
+	

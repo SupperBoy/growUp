@@ -1,0 +1,434 @@
+WEB
+
+web世界
+1.超文本      2.超媒体    3.超文本传输协议
+
+制作网站的流程    --前端
+1.美工设计     2.页面布局美化    3.创建动态的HTML页面
+
+HTML是一种规范，一种标准，他通过标记符号来标记要显示的网页中的各个部分。可以告诉浏览器如何显示其中的内容，他是一种由浏览器解释执行的语言。
+注意：浏览器按顺序阅读网页文件，然后根据标记符号解释和显示其标记的内容，对书写出错的标记将不指出其错误，且不停止其解释执行过程，编制者只能通过
+显示效果来分析出错原因和出错部位。
+
+标签：有开始，有结束。
+属性：必须放在开始标签里面，属性可以为标签提供更多样化的特性
+元素：开始和结束标签连同包含在他们之间的内容
+注释：为编写的HTML代码提示说明文字，或者临时停用部分代码 
+
+
+<meta name='keywords(关键字)' content='关键字，多个关键字用逗号隔开' />
+<meta name='descrition(描述)' content='本篇网页的概述，一段话，对网站的进一步描述' />
+<mate name='author(作者)' content='网页作者的资料'/>
+<mate name='robots' content=null/>
+content='这里写的是注释'
+<meta name='viewport' content='width=device-width,initial-scale=1 , user-scalable=no' />适应移动端\
+--------------------------------------------------------------------------------------------------------------------------
+							HTML4
+h1-h6		标题标签
+b		粗体
+strong		粗体（强调）
+i		斜体
+em		斜体（强调）
+u		下划线
+strike		删除线
+s		删除线
+del		删除线
+br		换行
+hr		分割线<hr size='大小' color='颜色' width='宽度'>
+p		段落标签（只识别一个空格，识别标签）
+pre		段落标签（不识别标签，识别多个空格）
+blockquote	长文本标签（首行缩进）
+address		为网页加入地址信息
+code		在网页中显示一些计算机行业的编程代码，注：如果不是多行代码，可以使用pre标签
+img		插入图片<img src='路径' alt='加载失败显示' title='提示文字'>
+sapn		无意义的行标签
+div		无意义的块标签
+a		链接标签<a href='路径' target='_self(_blank)打开方式'
+	<a href='javascript:;或者#'></a>阻止默认跳转
+ul		无序列表
+	li
+ol		有序列表
+	list-style:none——没有
+		disc——默认的实心圆
+		Square——方块
+		Circle——空心圆
+dl		自定义列表
+	dr
+	dd
+table		表格
+	thead	表头
+	tbody	内容
+	tfoot	表位	
+	tr	行
+	td	列
+	cellpadding='0'——内间距
+	cellspacing='0'——内边距
+	rowspan='num'——合并行
+	colspan='num'——合并列
+
+表单
+<form action='发送的位置' name='表单的名字' method='发送的方式（get或者post）'>
+	<input type='text' placeholder='默认显示的文字' maxlength='最多写多少'>
+	Input::webkit-input-placeholder{color:red}——改变默认显示文字的颜色
+	textarea——多行文本域
+	type=text——单行文本
+		password——密码
+		radio——单选
+		checkbox——复选
+		submit——提交按钮
+		reset——重置按钮
+		button——普通按钮
+		file——上传文件
+
+文本区域
+	<textarea name='' id='' cols='10'(行) rows='30'(列) style='resize:none'(固定大小)></textarea>
+
+控件组
+	<fieldset>
+		<legend>字</legend>	标题
+		<input type='text'>
+		<input type='password'
+	</fieldset>		控件组，用来打包一些标签
+
+创建热点区域
+	<img src='图片地址' usemap='#名称'>
+	<map name='#名称'>
+	<arc shape='rect(矩形)、circle(圆)、poly(多边形)' coords='区域坐标' hrer='路径'>
+
+跑马灯效果
+	<marquee behavior='方式' direction='方向' loop='次数'>字</marquee>
+		behavior(行为)='scroll'		普通卷动
+				alternate	来回
+		direction(方向)='up(上)'
+				down(下)
+				left(左)
+				right(右)
+		loop='循环的次数'
+音频
+	udio  src=”路径”  autoplay='autoplay(自动播放)'  controls='controls（控制组件）' loop='loop'（循环）  muted（默认静音）preload>
+
+视频
+video src='路径' controls(显示控件)></video>
+
+帧窗口：<frameset rows(行)='比例'或者cols(列)='比例'>
+		<frame src='路径' scrolling(滚动条)='yes或者no'>
+	</frameset>
+注：删除body,frameset和body不能共存
+
+HTML 实体：
+	&nbsp;	空格
+	&lt;	<
+	$gt;	>
+
+锚链接:
+	给页面当中的某个特定位置添加标记，可以通过a链接直接
+	指向这个位置，经常用在页面内容比较多的情况。
+	语法:
+		<a href=“# 链接名字”>  字 </a>
+		<a href=“” name=“链接名字”> 字 </a>
+----------------------------------------------------------------------------------------------
+							HTML5
+标签：
+	artic		标记定义一篇文章
+	header		定义一个页面的头部
+	nav		定义一个导航链接
+	section		定义一个区块
+	aside		定义页面的侧边栏
+	hgroup		定义文件中一块区域的信息
+	figure		标记定义一组媒体内容以及他们的标题
+	figcaption	标记定义figure元素的标题
+	footer		标记定义一个页面或区域的底部
+	dialog		标记定义对话框的内容
+	details		详细信息
+	summary		定义details的标题
+	bdi		允许你设置一段文本，使其脱离其父元素的文本方向设置
+	command		定义命令按钮
+	mark		定义带有记号的文本
+	meter		定义度量衡，仅用于已知最大和最小的度量
+	progress	定义任何类型的任务的进度
+	ruby		定义ruby注释（中文注音货字符）
+	rt		定义字符（中文注音或字符）的解释或发音
+	rp		在ruby注释中使用，定义不支持ruby元素的浏览器所显示的内容
+	time		定义日期或时间
+
+多媒体标签
+	video(视频标签)
+	audio(音频)
+		controls	显示控件
+		autoplay	自动播放
+		nuted		静音
+		loop		循环
+		poster		显示封页照片
+		<source src=''>	定义媒体资源，选择视频格式
+
+音频与视频：
+	play()		播放
+	pause()		暂停
+	currentTime+=20	快进
+	currentTime-=20	快退
+	volume+=0.2	声音调大（声音调整的范围是0-1）
+	volume-=0.2	声音调小
+	playbackRate=3	加速播放
+	playbackRate=1/3慢速播放（正常的是1倍）
+	进度条：
+	progress||meter	进度条
+		value	当前进度
+		max	最大值
+		min	最小值
+		high	高值
+		low	低值
+meter进度条	<meter value='4' max='10' min='2' high='7' low='2'></meter>	value值在high和low值之间
+progress进度条	<progress value='4' max='10' min='2'></progress>
+
+注释标签
+	ruby		标记定义注释音标
+	rt		对ruby的注释内容文本
+	rp		对于不支持ruby元素的处理方式
+	<ruby> 人 </ruby><rt> ren </rt>
+	<ruby> 人 (<rp><rt> ren </rt></rp></ruby>对于不支持ruby元素的处理
+
+删除的标签
+	big font s u fram frameset noframe
+
+重新定义的html标签
+	b	只表示粗体，不表示强调
+	i	只表示斜体，不表示强调
+	dd	定义包含文本
+	dt	解释文本
+	hr	表示主题结束
+	menu	定义用户界面的菜单
+	strong	只表示重要性
+
+智能表单
+	type新属性	input 与form的ID进行关联
+	type='emil'	限制用户输入必须是emil类型
+	type='url'	限制用户输入必须是url类型
+	type='data'	限制用户输入必须是日期类型
+	type='time'	限制用户输入必须是时间类型
+	type='month'	限制用户输入必须是月类型
+	type='week'	限制用户输入必须是周类型
+	type='range'	产生一个滑动条的表单 max='10'(最大) min='1'(最小) step='5'(一次走多少)
+	type='color'	产生一个颜色的表单
+	type='search'	产生一个搜索意义的表单
+	type='text' pattern='正则'	h5表单验证
+		<input type='text' list='list'>自动检索输入的东西
+		<datalist id='list'>
+			<option>111</option>
+			<option>222</option>
+			<option>333</option>
+		</datalist>
+	required	验证
+	pattern		正则
+
+
+canvas	画布
+	属性：width	height
+canvas的画图环境：canvas.getContext('2d');
+
+****canvas获取的xy要+0.5，不然会出现锯齿。
+
+图形修饰：
+	createLinearGradient(x1,y1,x2,y2)	线性渐变
+	createRadialGradient(x1,y1,r1,x2,y2,r2)	径向渐变
+	createPattern(元素，repeat)		在指定方向上重复指定的元素（加载完成以后）
+	addColorStop(0-1，颜色)			渐变的颜色
+	fillStyle=				填充的颜色或模式
+	strokeStyle=				画线的颜色或模式
+	shadowColor=color			阴影的颜色
+	shadowBlur=number			阴影模糊的层级
+	shadowOffsetX=number			阴影X轴和图像的距离
+	shadowOffsetY=number			阴影Y轴和图像的距离
+绘图方法：
+	beginPath()				开始一条新路径
+	closePath()				结束路径（并且创建当前点到起始点的路径）
+	moveTo(x,y)				开始点
+	lineTo(x,y)				指定下一个点的位置
+	quadraticCurveTo(控制X，控制Y，结束X，结束Y)创建一条二次贝塞尔曲线
+	bezierCurveTo(控制X1，控制Y1，控制X2，控制Y2，结束X，结束Y)创建一条三次贝塞尔曲线
+	rect(x,y,width,height)			矩形
+	arc(x,y,r,起始角度，结束角度，true/false(是否逆时针，默认是false))创建圆
+	arcTo(起X,起Y,终X,终Y,r)		创建两切线直接的弧
+	stroke()				绘制已定义的路径
+	fill()					填充当前绘图
+	clip()					从原画布剪切任意形状和尺寸的区域
+	isPointInPath(x,y)			判断指定点是否在当前路径当中，返回布尔值
+路径修饰
+	lineCap=				设置或返回线条末端线帽的样式
+		butt	默认，平直边缘
+		round	圆形线帽
+		square	正方形线帽
+	lineJoin=				设置或返回两条线相交时所创建的拐角类型
+		miter	默认，尖角
+		round	圆角
+		bevel	斜角
+	lineWidth=				设置或返回线条的宽度
+		number	以像素计算默认是1px
+	miterLimit=				设置或返回最大斜接长度
+		number	正数。规定最大斜接长度。如果斜接长度超过 miterLimit 的值，边角会以 lineJoin 的 "bevel" 类型来显示!
+方法转换
+	save()					保存当前环境
+	restore()				返回之前保存过的路径状态和属性
+	scale(W倍数,H倍数)			缩放当前绘图
+	rotate(角度)				旋转当前绘图
+	translate(x,y)				设置画布上的（0,0）的位置
+	transfrm(水平缩放，水平倾斜，垂直倾斜，垂直缩放，水平移动，垂直移动)替换绘图的当前转换矩阵			
+	setTransform(参数=transform的参数)	将当前转换重置为单位矩阵。然后运行 transform()
+文字
+	font=					设置或返回文本内容的当前字体属性
+	textAlign=				设置或返回当前文本的水平对齐样式
+		start	默认，文本在指定位置开始
+		end	文本在指定位置结束
+		center	文本中心北放置在指定的位置
+		left	文本左对齐
+		right	文本右对齐
+	textBaseline=				设置或返回文本内容当前的垂直对齐方式
+		alphabetic	默认，文本基线是普通的字母基线
+		top		文本基线是在em方框的顶端
+		hanging		文本基线是悬挂基线。
+		middle		文本基线是 em 方框的正中。
+		ideographic	文本基线是表意基线。
+		bottom		文本基线是em方框的底端
+	fillText				在画布上绘制填充的文字
+	strokeText				在画布上绘制未填充的文字
+	measureText(text)			返回包含指定文本宽度的对象
+绘制图像
+	getImageData(x,y,w,h)			获取指定范围内的对象
+	createImageData(w,h)			创建指定大小的imageData对象
+	createImageData(imageData)		创建与imageData对象相同大小的imageData对象，但是图像数据不会复制
+	putImageData(imageData)			把imageData对象放到图像上
+	drawImage()				在画布上绘制图像、画布或视频
+	drawImage（元素，剪切开始位X置，结束Y位置，剪切W数值，剪切H数值，画布放置x位置，画布放置y位置，要使用的图片的宽度，高度）
+	globalAlpha				透明度
+
+拖拽API
+	被拖拽的元素：
+			ondragstart	拖拽开始
+			ondragend	拖拽结束
+			ondrag		拖拽过程
+	投放区的元素：
+			ondragenter	投放开始（拖入投放区）
+			ondragleave	投放结束（离开投放区）
+			ondragover	投放区移动
+			ondrop		投放过程
+注意：实现ondrop方法的时候，在ondragover上添加阻止事件默认行为
+
+new formData()
+	模拟表单空间用于上传文件和ajax进行数据交互的；
+	可以把对象放在XML。send(form);
+	form对象下添加键值对：form.append(name,value)
+dataTransfer		拖拽数据，传递对象
+e.dataTransfer.files	拖拽文件列表的数值[0][1]
+
+ajax2
+	xml.onload=function(){
+		if(xml.status==200){
+			xml.response
+		}
+	}
+	xml.responseType='json'		可以去规定后台返回数据的格式
+	JSON.parse()			解析一个json字符串，够着有字符串描述的javascript值或对象
+
+检测上传进度
+	xml.upload.progress=function(e){
+		var load=e.loaded;		检测当前的上传量
+		var total=e.total;		检测上传的总量
+	}
+
+本地存储
+	本地存储和cookie的区别
+		存储量大：web存储比cookie存储量大
+		安全性高：cookie在向后台发送一个http请求的时候都会出现在http头部，而h5的本地存储不会，节约了宽带
+	localStorage和sessionStorage的区别
+		localStorage没有时间限制的数据存储，永远不会过期，除非主动删除数据，数据可跨域多个窗口
+		sessionStorage数据会因窗口的关闭而丢失，不同窗口不可以共享
+	localStorage用法：
+		localStorage.length	获得storage中的个数
+		localStorage.key	获得第n个键值对的键
+		localStorage.key=value	设置
+		localStorage.setItem(key,value);添加
+		localStorage.getItem(key)获取
+		localStorage.removeItem(key)移出指定的
+		localStorage.clear()	清除全部
+	sessionStorage用法：
+		sessionStorage.length		获取Storage中的个数
+		sessionStorage.key			获得第N个键值对的值
+		sessionStorage.key=value		设置
+		sessionStorage.setItem（'key'，value）	添加
+		sessionStorage.getItem（key）		获取
+		sessionStorage.removeItem（key）	删除
+		sessionStorage.clear（）		清除
+离线存储：
+	1、为什么使用离线存储
+		用户在没有与因特网链接时，照样可以访问站点或应用，在用户与因特网链接时，自动缓存数据，使我的网站的适应性和应用性更强
+	服务器：
+		需要在apache配置文件 httpd.conf 中添加
+			AddType text/cache-manifest .manifest
+		建立.manifest清单文件
+		CACHE MANIFEST
+		###
+		CACHE：
+		（需要缓存的）
+		NETWORK:
+		(有网的时候加载的)
+		FALLBACK:
+		（备胎）
+	客户端：
+		关联manifest文件到html文档
+		<html mabifest='aa.manifest'>
+地理定位：
+	geolocation	地理定位的核心
+	watchPosition()	返回用户当前的位置，并继续返回用户移动时的更新位置（就像汽车上的GPS）
+	clearWatch()	停止watchPosition()方法
+
+SVG
+	在网页中进行图形绘制
+	跟canvas的区别：svg绘制的图形是矢量图，矢量图的特点是放大不会失真
+	基于xml的技术
+	
+	SVG的使用：	新建xml或svg文件
+			xml的版本号与encoding
+			添加文档头：<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+			svg格式的根标签的命名空间：xmlns='http://www.w3.org/2000/svg'
+			html格式的根标签的命名空间：xmlns='http://www.w3.org/1999/xhtml'
+	
+	HTML中引入	图片的方式引入	<img src='svg.svg'>
+			背景的方式引入	<div style='background：url（svg.svg）'></div>
+			框架		<iframe src='svg.svg' frameborder='1'></iframe>
+			直接添加		<svg></svg>（最好svg的宽度高度都是100%）
+	
+	SVG的基本图形
+			圆	<circle cx='x中心' cy='y中心' r='半径' fill='填充颜色' stroke='画线的颜色' stroke-width='线的宽度'></circle>
+			矩形	<rect x='左上角X' y='左上角Y' width='宽度' height='高度'></rect>
+			线段	<line x='起始点X' y='起始点Y' x2='结尾点X' y2='结尾点Y' stroke='线的颜色' stroke-width='线的宽度'></line>
+			椭圆	<ellipes cx='' cy='' rx='' ry=''></ellipes>
+			折线	<polyline points='x y,x1 y1,x2 y2' style='fill:填充的颜色;stroke:线的颜色;stroke-width:线的宽度'></polyline>
+			多边形	<polygon points='x y x1 y1 x2 y2' stroke='线色' fill='填充颜色'></polygon>
+			五角星	<polygon points='100 10 40 180 190 60 10 60 160 180'></polygon>
+path
+	d属性（命令）：	
+		M	起始位置
+		L	第二个点以后的位置
+		H	水平（小写表示相对于上一个点）
+		V	垂直（小写表示相对于上一个点）
+		A	环形图退
+		Z	结束，首尾自动闭合
+	A命令：	
+		x半径
+		y半径
+		角度
+		弧长	0小弧	1大弧
+		方向	0逆时针	1顺时针
+		终点x坐标
+		终点y坐标
+主意：H(相对于起点)V(相对于起点) h(相对于上一个点)v(相对于上一个点)
+<path d='M100 100L200 200L200 100Z' stroke='线色' stroke-width='线宽' fill='none'></path>
+<path d='M100 100H200V200' stroke='线色' stroke-width='线宽' fill='none'></path>
+
+SVG在JS中操作
+	svg创建标签
+		createElementNS(svgNS(命名空间)，标签)
+		circle.setAttribute('cx',100)
+		svg.appendChild(circle)
+	svg文本
+		水平居中：text-abchor='middle'
+		垂直居中：document-baseline:middle

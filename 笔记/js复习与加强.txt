@@ -1,0 +1,1452 @@
+***栈放的是引用相当于快捷方式
+***堆放的是实际数据
+
+Var num=1;
+typeof num  Number
+typeof typeof num String
+
+for(var i=0;i<5;i++){
+		for(var i=0;i<5;i++){
+			console.log(i)  //0  1 2 3 4
+		}
+};
+for(var i=0;i<5;i++){
+		for(var i=0;i<3;i++){
+			console.log(i)
+		}
+}
+'use strict'严格模式
+	for(let i=0;i<5;i++){
+		for(let i=0;i<5;i++){
+			console.log(i)
+		}
+	}
+
+typeof aa
+
+var 和 let
+
+//在浏览器执行这个代码之前，它会检查所有的内容
+//浏览器会先对代码进行隐式的编译过程
+var i=1;
+var i=2;
+var i=3;
+var i=4;
+var i=5;
+
+//等价于(编译完成之后的结果)
+var i=1;
+i=2;
+i=3;
+i=4;
+i=5;
+
+for(let i=0; i<5; i++){
+    for(let i=0; i<5; i++){
+        console.log(i);
+    }
+}
+alert(i); //会出现引用错误
+
+什么是引用？
+引用即快捷方式。指针的另外一种叫法。
+内存结构中，栈内存里存放的都是引用变量。
+书的目录、程序的快捷方式、
+
+局部变量(局部范围有效)
+定义在函数内部的变量，叫做局部变量。它只能够在函数内部使用
+
+let关键字，可以在代码块当中，定义局部变量
+{。。。。。。。}
+一对大括号中的代码，就可以称之为一个代码块
+
+
+
+什么是IDE?  
+集成开发环境
+hbuilder、ecplise就是其中一种
+
+什么叫手写代码？
+不使用任何框架或插件，纯粹使用原生JS来完成功能
+
+
+for 和 for-in  和 forEach
+
+meta是什么？  
+元信息（例如快递单的描述）
+对实际数据的一种描述信息
+
+forEach循环的使用？
+使用回调函数的方式，基本类似于JQ
+list.forEach(function(item, index, array){
+		console.log(this)
+     console.log(item);
+},list);
+因此，我们使用系统提供的打印函数，可以轻易的完成遍历
+list.forEach(console.log);  
+console.log=function(){
+print arguments
+};	
+Console.log(index)
+//在chrome浏览器下，需要手动设定this指向
+list.forEach(console.log, console);
+for循环 和 for-in循环的区别？
+本质上讲，这两个循环，都是通过属性名来属性值。
+只不过for---in它可以自动获取一个对象的属性名称
+for循环 和 forEach的区别?
+
+
+
+数组本质上，就是一个特殊的对象
+var list = {
+     0 : "a",
+     1 : "b",
+     2 : "c",
+     length : 3   //当这个属性不能被遍历的时候，它看起来就跟数组没有区别了
+}
+
+对象的本质
+对象就是一种键值的映射。 本质上是一个HashMap
+什么是哈希算法？
+哈希算法指的不是某一个算法，指的是某一种算法。
+简单的说，就是加密。
+加密的本质是什么？
+就是把需要加密的原文， 按照某种规则，进行转换。而这个规则是不对外公开的。
+加密原则:  
+1  相同的原文，经过同一规则的转换，必须出现相同的密文。
+2  不同的原文，经过同一规则的转换，必须出现不同的密文。
+哈希值是什么？
+经过哈希算法计算得出的值，理论上 不同的原文 计算后 不会出现相同的值。
+哈希的特点，就是一对一的映射。
+
+
+数组和伪数组的区别
+伪数组，即看起来很像数组的对象。
+实际上是经过包装的数组，它可以使用普通for循环进行遍历。
+        window.onload = function(){
+            //伪数组
+            var plist = document.getElementsByTagName("p");
+             
+            //把一个伪数组转换成了数组
+            plist = Array.prototype.slice.call(plist)
+            //slice方法的实现原理
+             Array.prototype.slice=function(start,end){
+    	            var arr=[];
+    	            start=start||0;
+    	            end=end||this.length;
+    	            for(var i=start;i<end;i++){
+    		             arr.push(this[i]);
+    	            };
+    	             return arr
+                 };
+            var obj=new Array(1,2,3,4);
+            var result=obj.slice(2,3);
+            for(var i in plist){
+                console.log(i);              				}
+            console.log(plist instanceof Array);              console.log(plist.length);
+        }
+数组的sort方法
+var arr = ["11","4","30","9","5","6"];
+//自定义排序原则
+//若a>b，需要返回大于0的正数
+//若a<b，需要返回小于0的负数
+//若a=b，需要返回0
+arr.sort(function(a,b){
+   return a - b;
+});
+排序算法
+var arr = [11, 9, 5, 30, 2, 4, 10];
+
+//冒泡排序
+for(var i=0; i<arr.length; i++){
+    for(var j=0; j<arr.length-i-1; j++){
+        if(arr[j]<arr[j+1]){
+            var temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+        }
+    }
+}
+//选择排序
+for(var i=0; i<arr.length; i++){
+    for(var j=i; j<arr.length; j++){
+        if(arr[i] < arr[j]){
+            var temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+}
+递归是什么？？
+函数调用函数自身，就是递归。
+1 递归都是死循环
+2 因此递归函数必须要有结束条件
+//快速排序
+function quicksort(arr){
+    if(arr.length <= 1) return arr;  //结束条件
+    var midIndex = parseInt(arr.length/2); 
+    var mid = arr[midIndex];
+    var left = [];
+    var right = [];
+    for(var i=0; i<arr.length; i++){
+        if(i == midIndex) continue;
+        if(arr[i]<=mid) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+    // 递归调用  F(arr) = F(left) + mid + F(right)
+    return quicksort(left).concat(mid).concat(quicksort(right));
+}
+常见的数据结构
+栈结构
+特点： 先进后出、后进先出(手机设置)
+举例： 
+堆:
+二叉树
+队列
+特点： 先进先出，后进后出(排队买票)(开机启动应用程序)
+链表
+特点：元素跟元素之间，利用引用保持链状关系
+aàbàc  eg:window.document.body
+(单向链表)（双向链表）
+对比数组：插入元素或查找元素
+函数作用域和块级作用域 
+(function(){
+	var x=1;
+})()    匿名函数的自调用
+模块化开发的目的是消除全局变量
+(1)	function fun(){}
+(2)	var fun=function(){}
+作用域：  在传统的JS中，只有function才能产生作用域
+在ES6的新模式中，代码块也可以产生作用域.
+‘use strict’
+If(1!=0){
+Function fun(){}
+}  fun()
+let关键字，可以在代码块生成局部变量。
+即使不使用let，代码块也是会产生作用域的。
+目前chrome浏览器，采用严格模式作为标记来区分ES6的开启
+作用域链
+一个函数内部的局部变量，其实是属于该函数作用域对象的一部分。
+当函数出现嵌套时，作用域对象会形成链式结构。
+Eg:请编写一个函数，使f(4)(5)(6)的结果返回120
+Function f(a){
+	Return function f(b){
+		Return function f(c){
+			Return a*b*c
+}
+}
+}
+F(4)(5)(6);
+一切皆对象，没有独立存在的个体
+Var num=1;
+Alert(window.num)
+
+Eg:function test(){
+Var num=1;
+Console.log(window.num);//
+Console.log(test.num);//
+}
+
+
+aruguments参数及严格模式
+
+arguments代表了，函数执行时，传入的参数集合（伪数组）
+
+形参： 形式参数，即定义函数时，声明的参数列表
+
+实参： 实际参数，即调用函数时，传入的参数列表
+function average(){
+		var length=arguments.length;
+		var sum=0;
+		for(var i=0;i<length;i++){
+			sum+=arguments[i];
+		}
+		return sum/length;
+	};
+	console.log(average(1,5,7,2));
+在非严格模式下：
+function avg(p1,p2,p3){
+     arguments[1] = 100;
+     console.log(p2); //结果为100，形参变量跟arguments同步
+}
+avg(1,2,3);
+
+在严格模式下：
+"use strict";
+function avg(p1,p2,p3){
+     arguments[1] = 100;
+     console.log(p2); //结果为2，形参变量跟arguments不同步
+}
+avg(1,2,3);
+
+
+
+var res=(function(n){
+    	if(n<=2){
+    		return 1
+    	}       
+    	return  arguments.callee(n-1)+arguments.callee(n-2);
+    })(4);
+console.log(res)
+
+arguments.callee，表示函数自身的引用
+
+(function(){
+     arguments.callee(); //调用自身，形成递归
+})();
+
+严格模式下，arguments.callee无法使用
+
+面试题：
+var info = "华宇信息技术有限公司旗下的子公司有:，";
+info += "北京华宇软件，";
+info += "北京华宇信息，";
+info += "大连华宇信息，";
+info += "北京华宇金信";
+info = info.split("，");
+for(var i=0; i<info.length; i++){
+     console.log(info[i]+"\n");
+}
+请指出以上代码的性能问题，并进行优化改造。
+
+答：频繁的+= ，对于字符串操作来讲，是效率低下的。应该将字符串直接放入数组。
+
+将字符串'abcdefg,efg,efg'中的efg前面插入"-thunisoft-"
+'abcdefg,efg,efg'.replace(/efg/g ,"-thunisoft-efg" );
+
+if(!(window.a)){
+	var a=1;
+}
+alert(a)
+实际上：
+var a;
+if(!(window.a)){   
+    a = 1;
+}
+alert(a);
+
+变量的声明提升，是在什么时候完成的？  编译期，执行期
+
+var a = 1;
+var b = function a(x) {
+   x && a(--x);
+};
+alert(a);
+
+实际上：
+var a = 1;
+var b = function(){
+ x && arguments.callee(--x);
+}
+alert(a);
+
+举例：
+btn.onclick = function abc(){
+     //这里可以执行abc
+     abc();
+}
+//btn.abc();  这里不能执行abc
+
+//函数abc，等价于一个匿名函数
+
+function a(x) {
+    return x * 2;
+}
+var a;
+alert(a);  
+
+实际上：
+var a = function(x){
+     return x*2;
+}
+a;
+alert(a);
+
+//重复使用 var定义一个变量，var只有第一次生效的。
+
+//"use strict"
+function b(x, y, a) {
+    arguments[2] = 10;
+    alert(a);
+}
+b(1, 2, 3);
+
+闭包 
+概念:
+闭包 是 一个 可以在一个函数的外部，访问该函数内部资源的函数
+function m1(){
+     var x = 1;
+     return function m2(){
+          console.log(++x);
+     }
+}
+m1()();  //2
+m1()();  //2
+m1()();  //2
+var m2 = m1();
+m2();  //2
+m2();  //3
+m2();  //4
+垃圾回收机制
+手动垃圾回收
+所有不再使用的变量，要手动的清理内存。
+自动垃圾回收
+不再关心什么时候情绪，由系统内置的垃圾回收器，定期自动清理。
+清理的原则： 判断该资源，是否还存在引用指向。
+
+JS的多线程
+什么是多线程？
+什么叫多任务？
+多任务的好处？
+多线程的好处？
+
+JS不允许手动创建线程，如何做到异步？
+
+
+闭包及应用
+
+for(){
+     setInterval(function(){
+          //这里无法使用for循环变量
+     });
+}
+
+闭包改造：
+var div=document.getElementsByTagName('div');
+     for(var i=0;i<div.length;i++){
+     	(function(num){	
+     		var t=setInterval(function(){
+var res=getStyle(div[num],'opacity');
+     		    div[num].style.opacity=res-=0.2;
+	       },1000);
+       })(i);
+};
+
+
+this指向问题 & callback & 绑定this	
+this 当前对象，类似于生活中的代词“我”
+准确的说，this指向此刻正在执行该函数的对象
+function test(){
+     console.log(this);
+}
+Window.test(); //打印window ，因为test函数由window对象调用
+var obj = {};
+obj.method = test;
+obj.method(); //打印obj，因为test函数由obj对象调用
+var obj={};
+	 obj.cc 
+
+=function(){
+	 	console.log(this);
+	 };//没有调用之前不能确定this
+	 obj.cc 
+
+();
+	 test=obj.cc 
+
+;
+	 test();
+
+     var obj={a:1};
+	 (function test(){
+	 	console.log(this)
+	 }.bind(obj))();
+谁调用，this指的就是谁
+
+绑定回调函数中的this
+function animate(obj, callback){
+     obj.xxxxx = callback; //增加了xxxxx的引用
+     obj.xxxxx(); //利用obj对象来调用callback
+}
+animate(obj, function(){
+     console.log(this); //打印obj
+});
+
+
+BOM 和 DOM
+ECMA核心语法   +  BOM   +  DOM
+BOM (Browser(浏览器) Object(对象) Model(模型))
+编程模型到底是什么？？  数据的一种操作形式
+
+我们通过什么形式来访问和操作浏览器？？？
+我们把浏览器本身看做一个对象（window），通过操作这个对象（window）来改变浏览器的行为。
+
+window.location.reload();
+window.close();
+
+DOM (Document Object Model)
+我们把HTML文档看做一个对象(document),通过操作这个对象（document）来改变网页的行为
+
+专业名词
+什么是OO？？ 
+Object Oriented
+
+OOA 面相对象分析 (Object Oriented Analysis)
+OOP 面相对象编程方式(Object Oriented Programming)
+OOD 面相对象设计(Object Oriented Design)
+
+对象带来的第一大好处：
+信息的打包，它使得信息的传递处理变得更加快捷.
+
+
+编程语言的发展
+0111010111011111101010101010111010101111001010   10011010100100111001
+print A
+助记符的概念
+If(){
+}else{
+}
+//编程语言的语法，在逐渐的进步
+如果（）{
+
+}那么 {
+
+}
+
+//SQL语句，越来越接近自然语言
+select sno,name from student_table
+
+当软件规模逐渐庞大的时候， 开始出现了复合数据类型
+var name = "张三";
+var age = 20;
+var sex = "男";
+var sno = "1233333";
+.........
+class 学生 {
+     name : 
+     age :
+     sex :
+     sno :
+     ......
+}
+Function class(){
+This.name 
+
+=‘’
+}
+
+//将零散的信息打包成一个对象, 逻辑处理上也带来极大的便利
+举例：
+//请把王尼玛这个学生开除掉！
+var wangnima = new 学生;
+delete wangnima;
+
+//创建一个复合数据类型，也就是对象
+var stu = new 学生;
+var stu2 = new 学生;
+
+//定义一个类, C++或java的写法
+class 学生 {
+     name : 
+     age :
+     sex :
+     sno :
+     ......
+}
+
+//定义一个构造函数，JS中的写法
+function 学生(){
+     
+}
+使用方式： var stu = new 学生
+
+
+ES5 数组的扩展方法
+
+var list = [1,2,3,4,5];
+forEach循环不返回值
+list.forEach(function(item, index, array){
+     //item表示 数组的每一个元素
+     //index表示 该元素的下标
+     //array表示  数组本身
+     //target表示 this 的指向
+},target);///////////////??？？
+map针对每一个元素执行一个函数，返回一个包含所有返回值的数组
+list.map(function(item, index, array){
+     return item+1; //针对每一个元素进行操作
+}, target); //返回一个新的被修改过的数组
+reduce依次从左往右进行运算
+list.reduce(function(x,y){
+     return x+y;
+},target);
+//结果 15
+
+filter 筛选，针对每一个元素
+list.filter(function(item){
+    return item>=3; //true表示保留，false表示过滤掉
+},target);
+
+
+
+
+CDN加速
+http://cdn.code.baidu.com/ 
+
+什么叫缓存？？
+
+好处，减少等待时间，提高效率
+
+CDN的缓存，本质就是提供副本
+副本是需要进行同步的。 缓存有可能会过期。
+
+当缓存过期之后，CDN节点不再提供内容，它需要向源服务器进行数据的同步
+同时，该节点会尽可能的去查找附近最空闲的且没有过期的节点，来返回数据
+
+通过这样的手段，我们就可以某种程度上提高了我们的网络访问速度
+
+注： 缓存，一般情况下，只针对静态文件，或不经常修改的内容。 
+也可以说，这些内容是基本没有修改的需求，只做查询。
+
+
+文档碎片
+
+var cache = document.createDocumentFragment();
+
+for(var i=0; i<10000; i++){
+     var oDIV = document.createElement("div");
+     cache.appendChild(oDiv);
+}
+
+document.body.appendChild(cache);	
+
+
+
+面试题
+要求封装函数，实现如下效果
+(5).a(2).b(3)    ===   4 
+
+Number.prototype.a = function(x){
+     var val = this.valueOf();
+     return {
+          b:function(y){
+               return val + x - y ;
+          }
+     }
+}
+
+ES6 字符串的新增方法 及 字符串模板
+
+includes(content)
+用来检测是否包含指定的内容，如果包含，则返回true，否则返回false
+
+startsWith(content)
+用来检测是否以指定的内容开头，如果是，返回true，否则返回false 
+
+endsWith(content)
+用来检测是否以指定的内容结束，如果是，返回true，否则返回false
+
+repeat(times);
+将字符串重复指定的次数并返回
+
+字符串模板
+$(temp).html(
+     `你好，我的名字叫${username}，下面是我的介绍${introduce()}`
+);
+使用`反引号包裹的字符串，可以当场模板来使用。
+利用${ username } 输出变量
+利用${ introduce() } 执行函数
+
+
+JS的单线程与定时器的异步
+
+JS本身是单线程执行
+
+定时器的异步都是通过在执行队列当中插入函数来做到的。
+
+例如：
+
+a();
+setTimeout(b, 3000);
+c();
+d();3.2
+e();
+
+执行的顺序:
+
+函数a调用----0.5秒---> 函数c调用-----1.5秒----->函数d调用----3.1秒----->插入函数b，调用-----> 函数e调用
+
+函数b会被插入执行队列的什么位置，有两个因素
+第一： 取决于添加函数b时， 设定的时间
+第二： 如果在3秒时，插入函数b,但由于函数d没有执行完，则等待函数d执行完，插入
+
+
+
+offsetParent
+
+div.offsetLeft  //获取div相对于（有定位的）父元素的位置
+
+div.offsetParent  //获取div有定位的父元素
+
+//请编写一个函数，getPosition(obj),返回{left:xxx,top:xxx} 获取obj元素在页面的绝对位置
+
+function getPosition(obj){
+     var left = 0;
+     var top = 0;
+     while(obj.offsetParent){ //如果offsetParent存在
+                left += obj.offsetLeft;
+                top += obj.offsetTop;
+                obj = obj.offsetParent; //累加后，使用父元素替换当前obj
+     }
+     return {"left":left,"top":top};
+}
+
+
+window.onload & DOMContentLoaded & img.onload
+
+$(document).ready()==DOOMContentLoaded;  //整个DOM树结构加载完成触发
+$(function(){})
+实现原理：
+document.addEventListener("DOMContentLoaded",function(){
+     console.log()    
+});
+
+img.onload  //表示图片加载完成时，触发
+
+window.onload //整个页面加载完成时，触发 
+
+//===============================================
+window.onload = function(){
+    console.log("window.onload......");
+}
+document.addEventListener("DOMContentLoaded",function(){
+    console.log("document.onload......");
+});
+function imgload(){
+    console.log("img.onload");
+}
+打印的顺序：
+document.onload......
+img.onload.......
+window.onload......
+
+
+事件流 及事件委托
+
+事件流： 事件的传播
+传播分为两个方向， 一个向外(冒泡)，一个向内(捕获)
+<html>
+     <body>
+          <div>
+               <button><tton>     
+          </div> 
+     </body>
+<ml>
+当我单击按钮的时候， 事件的触发顺序实际上是什么样的？
+
+html -----> body -----> div ------> button ----->  div ------> body ------> html
+
+事件 和 事件函数 的区别？
+
+什么是事件委托？	事件委托是利用冒泡原理，自己不处理事件，而是委托给父元素或者祖先元素甚至是根元素来处理。
+使用场景：为DOM中的很多元素绑定相同事件
+为DOM中尚不存在的元素绑定事件bind绑定事件的时候无法动态的去绑定功能
+
+$().on()
+$().delegate()
+$().live()
+
+document.onclick = function(event){
+		event=window.event||event;
+event.target || event.srcElement; //获取事件触发的源头,触发该事件的初始元素
+}
+
+onmouseleave & onmousenter
+onmouseover 和 onmouseout
+
+惰性函数
+http://blog.csdn.net/xiaobianjava/article/details/50617896 
+
+在JavaScript代码中，因为各浏览器之间的行为的差异，我们经常会在函数中包含了大量的if语句，以检查浏览器特性，解决不同浏览器的兼容问题。
+function getStyle(ele, attr){
+     if(window.VBArray){
+          getStyle = function(ele, attr){
+               return ele.currentStyle[attr];
+          }
+     } else {
+          getStyle = function(ele, attr){
+               return getComputedStyle(ele,null)[attr];
+          }
+     }
+};
+  
+
+函数的柯里化
+var overtime = (function() {
+  var args = [];
+  return function() {
+    if(arguments.length === 0) {
+      var time = 0;
+      for (var i = 0, l = args.length; i < l; i++) {
+        time += args[i];
+      }
+      return time;
+    }else {
+      [].push.apply(args, arguments);
+    }
+  }
+})();
+overtime(3.5);    // 第一天
+overtime(4.5);    // 第二天
+overtime(2.1);    // 第三天
+//...
+console.log( overtime() );   
+
+var getStyle = (function(){
+     if(window.VBArray){
+         return function(ele, attr){
+             return ele.currentStyle[attr];  
+         } 
+     }else{
+         return function(ele, attr){
+             return getComputedStyle(ele,null)[attr]; 
+         } 
+     }
+})();
+  getstyle=function(){
+   return getComputedStyle(ele,null)[attr]; 
+};
+Getstyle()
+兼容问题总结
+
+获取非行内样式:  
+var getStyle = (function(){
+     if(window.VBArray){
+         return function(ele, attr){
+             return ele.currentStyle[attr];  
+         } 
+     }else{
+         return function(ele, attr){
+             return getComputedStyle(ele,null)[attr]; 
+         } 
+     }
+})();
+
+添加事件监听
+var addEvent = (function(){
+     if(window.VBArray){
+          return function(ele, eventname, func){
+               ele.attachEvent("on"+eventname, func);
+          }
+     } else {
+          return function(ele, eventname, func, isCapture){
+               ele.addEventListener(eventname, func, isCapture);
+          }
+     }
+})();
+
+获取Event对象
+IE:   window.event
+非IE：  function(evt){
+
+}
+兼容写法 : function(evt){
+     var e = evt || event;
+}
+
+阻止冒泡
+e.stopPropagation ? e.stopPropagation()  : e.cancelBubble = true;
+
+阻止浏览器的默认行为
+e.preventDefault ? e.preventDefault() :  e.returnValue = false;
+
+获取事件触发源对象
+e.target || e.srcElement;
+
+获取键盘码
+e.keyCode || e.which;
+
+获取页面的滚动距离
+var scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+
+
+异常处理
+
+举例:
+我们要复制一个app目录下的文件A，到dest目录下的文件A
+
+function copy(src, dest){
+     
+     if(src不存在){
+          提示用户，你的源文件不存在！
+     } else {
+          if(dest存在){
+              提示用户，这个目标文件已经存在，是替换？ 还是放弃？ 
+              if(替换){
+                    //复制
+                    if(复制文件过程中，文件突然被修改了){
+                         发送一个错误消息(“出错了！！！你看着办”);
+                         throw new Error("出错了！");
+                    }
+                    if(复制文件过程中，文件突然被删除了){
+
+                    }
+                    if(意外断电或死机){
+                         
+                    }
+              }
+          }
+     }
+}
+
+任何一个程序，在运行的时候，都是无法避免错误的。
+异常处理：错误消息的传递机制
+
+MAIN() ------>  B() -------> C() -------> D()
+
+如果D()产生了异常， 可以选择向外发送消息, 
+那么，我们可以有选择的在 Main() 或 B() 或 C()的地方进行消息的拦截
+并对错误进行处理。
+
+try {
+
+} catch(e) {
+     
+}
+
+
+
+AJAX 和 XHR2
+传统的AJAX
+var req = new XMLHttpRequest();
+req.open("get", "http://xxxxxxx 
+
+", true);
+
+req.send();
+
+req.onreadystatechange = function(){
+     if(req.readyState == 4 && req.status == 200){
+          console.log(req.responseText);
+     }
+} 
+
+XMLHttpRequest Level2 新标准
+var xhr = new XMLHttpRequest();
+xhr.onload = 请求完成时，触发该函数
+xhr.timeout = 设定有效时间
+
+xhr.ontimeout = 当超时以后，触发该函数
+xhr.onprogress = function().....  返回数据的进度
+xhr.upload.onprogress = function(event){  //上传文件的进度
+     if(event.lengthComputable){
+          var percent = event.loaded / event.total;
+     }
+}
+lengthComputable  表示进度是否可计算
+loaded 表示已经完成多少字节
+total  表示总共多少字节
+
+
+
+JSON和XML text
+什么是JSON？？  它是一种数据的格式或数据的表示方法
+
+
+AJAX   Asynchronous Javascript And Xml(Json)
+
+JSON : JavaScript Object Notation
+{ id:234234, title: xxxxxxxxxx, dt: xxxxx,id:{}}
+
+<record id="324234">
+     <title cur="0-3">
+       <id>
+     </title>
+     <dt description="这个属性的意思是.......">xxxxxx</dt>
+</record>
+
+
+ES6  Promise(承诺)
+异步实现同步
+function a(){
+	setTimeout(function(){
+		console.log(1)
+	})
+}
+function b(){
+	setTimeout(function(){
+		console.log(2)
+	})
+}
+function c(){
+	setTimeout(function(){
+		console.log(3)
+	})
+}
+
+这是传统的写法,利用嵌套的方式
+function a(){
+	setTimeout(function(){
+		console.log(1)
+		b()
+	},3000)
+}
+function b(){
+	setTimeout(function(){
+		console.log(2)
+	})
+}
+
+
+
+
+使用Promise实现同步
+需要添加一个状态判定
+function a(a){
+	setTimeout(function(){
+		console.log(1);
+		a();
+	})
+}
+function b(a){
+	setTimeout(function(){
+		console.log(2);
+		a();
+	})
+}
+function c(){
+	setTimeout(function(){
+		console.log(3);
+	})
+}
+new Promise(a).then(function(){
+	return new Promise(b)
+}).then(c)
+Promise需要一个状态判定，也就是默认的第一个参数执行时，表示这个函数执行完毕，他就会执行then()，但是then只能跟着promise方法，所以后面还有的话then方法里需要写一个函数return出一个new Promise对象，也就是上面的写法。
+注：Promise只看第一个参数执行，所以如果有参数的话正常传，但是第一个要加一个执行状态
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function m1(){
+     setTimeout(function(){
+         m2() 
+     },3000);
+}
+
+function m2(){
+     ......
+     m3()
+}
+//如何让m1执行完成之后，再执行m2
+
+m1();
+m2(); 
+//若m2也是异步方法,
+
+function m3(){
+
+}
+//如何让m2执行完成之后，再执行m3
+我们两个请求 ajaxA 和 ajaxB
+
+function ajaxA(){
+     var req = new XML......;
+     req.open()....
+     req.onload = function(){
+          var req = new Xml.....
+          req.open
+          req.onload = function(){
+               var req = new xml....
+               ......
+          }
+          req.send()
+     }
+}
+
+有三个请求函数 ajaxA \ ajaxB \ ajaxC
+
+//当ajaxA完成，然后再调用ajaxB
+new Promise(ajaxA).then(new Promise(ajaxB)).then(ajaxC);
+
+function ajaxA(resolve){
+     
+     var req = new XML.....
+     req.open....
+     req.onload = function(){
+          ......
+          resolve(); //标记ajaxA变成已完成的状态     
+     }
+}
+
+function ajaxB(resolve){
+     var req = new XML.....
+     req.open....
+     req.onload = function(){
+          ......
+          resolve(); //标记ajaxA变成已完成的状态
+     }
+
+}
+
+
+var p1 = new Promise(ajaxA);
+var p2 = new Promise(ajaxB);
+var p3 = new Promise(ajaxC);
+p1.then(p2).then(p3).then(ajaxD);
+
+
+ES6  Promise(承诺)  异步变成同步  传统的方式:回调函数中执行
+
+
+function m1(){
+     setTimeout(function(){
+         m2() 
+     },3000);
+}
+
+function m2(){
+     ......
+     m3()
+}
+//如何让m1执行完成之后，再执行m2
+
+m1();
+m2(); 
+//若m2也是异步方法,
+
+function m3(){
+
+}
+//如何让m2执行完成之后，再执行m3
+
+new Promise(m1)
+.then(function(){
+     return new Promise(m2);
+})
+.then(m3);
+
+
+我们两个请求 ajaxA 和 ajaxB
+
+function ajaxA(){
+     var req = new XML......;
+     req.open()....
+     req.onload = function(){
+          var req = new Xml.....
+          req.open
+          req.onload = function(){
+               var req = new xml....
+               ......
+          }
+          req.send()
+     }
+}
+
+有三个请求函数 ajaxA \ ajaxB \ ajaxC
+
+//当ajaxA完成，然后再调用ajaxB，然后调ajaxC
+new Promise(ajaxA).then(function(){return new Promise(ajaxB)}).then(ajaxC);
+
+
+
+面向对象的设计模式GOF
+
+单例模式
+单实例。就是说，某个构造函数永远都只能生产一个对象
+单例就是保证一个类只有一个实例，实现的方法一般是先判断实例存在与否，如果存在直接返回，如果不存在就创建了再返回，这就确保了一个类只有一个实例对象
+
+function a(){
+if(!a.hehe){ 
+a.hehe={};	
+
+	  }
+		return a.hehe
+	}
+
+	console.log(a()==a())
+   
+function a(){
+		if(!a.ele){
+			a.ele=document.createElement('div');
+		}
+		return a.ele;
+	};
+	console.log(a()==a())
+   
+var p=(function(){
+		var t;
+		return function(){
+			if(!t){
+				t={}
+			};
+			return t;
+		}
+	})();
+	console.log(p()==p())
+  
+
+代理模式
+为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介的作用
+
+function 王宝强(){
+     this.唱歌 = function(){
+     }
+     this.拍电影 = function(){
+     }
+     this.真人秀 = function(){
+     }
+}
+function 宋喆(){
+     this.主人 = new 王宝强();
+     this.唱歌(){
+         //谈好价钱
+         主人.唱歌(); 
+     }
+     this.拍电影 = function(){
+         //找替身
+         主人.拍电影();
+     }
+}
+
+var s = new 宋喆()
+s.唱歌();
+s.拍电影();
+s.真人秀();
+
+function 计算航线(起始港口, 目的港口){
+     //经过一系列复杂的计算
+     return 航线路径;
+}
+
+funtion 地图服务(起始港口, 目的港口 ){
+     var 结果 = 缓存.get(起始港口, 目的港口 );
+     if(结果）{
+         return 结果;  
+     } else {
+          结果 = 计算航线(起始港口, 目的港口 );
+          缓存.save(结果);
+          return 结果；
+     }
+}
+
+工厂模式
+工厂模式定义一个用于创建对象的接口，这个接口由子类决定实例化哪一个类。该模式使一个类的实例化延迟到了子类。而子类可以重写接口方法以便创建的时候指定自己的对象类型。
+
+
+老板要求做什么产品，就做什么产品
+function 坦克工厂(){
+     if(!坦克工厂.单个实例){
+        坦克工厂.单个实例 = {
+            typelist : {
+                  天启 : function(){
+                      console.log("生产了一台天启")
+                  },
+                  光棱 : function(){
+                      console.log("生产了一台光棱")
+                  },
+                  幻影 : function(){
+                      console.log("生产了一台幻影")
+                  }
+             },
+             生产坦克 : function(type){
+                  return new this.typelist[type];
+             }
+        }
+     }
+     return 坦克工厂.单个实例;
+}
+var g1 = new 坦克工厂().生产坦克("光棱");
+var t1 = new 坦克工厂().生产坦克("天启");
+var h1 = new 坦克工厂().生产坦克("幻影");
+
+
+
+适配器模式
+适配器模式，一般是为要使用的接口，不符本应用或本系统使用，而需引入的中间适配层类或对象的情况；
+
+function Ipad(){
+     this.play = function(){
+         console.log("娱乐"); 
+     }
+}
+function Iphone(){
+     this.phonecall = function(){
+         console.log("电话");
+     }
+     this.play = function(){
+         console.log("娱乐");
+     }
+}
+
+function test(product){
+     try{
+         product.play();  
+     } catch(e){
+          console.log("%c 娱乐功能测试失败！", "color:red");
+     }
+     try {
+          product.phonecall();
+     } catch(e){
+          console.log("%c 电话功能测试失败！","color:red");
+     }
+}
+Test(new Ipad())
+function Adapter(obj){
+     this.play = function(){
+          obj.play ? obj.play() : console.log("paly功能不存在");     
+     }
+     this.phonecall = function(){
+          obj.phonecall ? obj.phonecall() : console.log("phoneall功能不存在");
+
+
+
+     }
+}
+
+test( new Adapter(new Ipad()) );
+
+
+
+
+AJAX跨域   (JSONP $ CORS)
+同源策略
+
+JSONP (Json With Padding)
+//定义一个回调函数cbk
+//生成一个script标签
+//将script标签src设定为要请求的路径
+//当请求成功时，返回一段代码
+//这段代码会调用cbk函数,同时将数据以参数的形式传给cbk
+
+CORS (Cross Origin Resource Sharing)  跨域资源共享
+http://www.cnblogs.com/Darren_code/p/cors.html 
+
+服务端的配合：
+Access-Control-Allow-Origin:*
+
+Location对象提供了与当前窗口加载的文档有关的信息；URL
+完整信息:location.href;
+返回协议：location.protocol;
+服务器的名字：Location.hostname
+返回服务器的名称和端口号:location.host
+返回端口号:location.port
+返回查询的字符串：location.search
+返回url的目录和文件名:location.pathname
+
+
+
+
+call方法的本质是什么？
+
+在传统的编程模式中，都是对象调用方法
+obj.test();
+
+利用call函数，我们可以将二者关系颠倒，即方法调用by对象
+test.call(obj);
+
+效果跟obj.test();是一模一样的
+但call方法的这种颠倒顺序，可以带来一个极大的好处，那就是可以任意指定对象
+
+说白了，就是这样:
+test.call(obj);
+test.call(obj2);
+test.call(window);
+test函数可以任意指定任何对象来调用它。
+
+因此Ipod.call(this)，等价于  this.Ipod();
+实际上就恰好达到了我们要的继承效果。
+
+
+除了call方法以外，还有一个call方法类似的，叫做apply
+test.apply(obj, [2,3,4,5,6]);
+
+
+prototype原型
+
+function Ipod(){}
+fucntion Itouch(){}
+function Iphone(){}
+
+Ipod.prototype.price = 100;
+
+new Ipod().price  //100
+
+添加到原型对象当中的属性或方法，可以被所有的实例对象访问
+
+
+Itouch.prototype = new Ipod();
+new Itouch().playmusic()
+
+原型链
+通过__proto__形成原型对象的链条
+Eg:  Object.prototype.play=function(){
+    	console.log('顶层对象原型的方法')
+    }
+    function Person(){
+    	this.play=function(){
+    		console.log('我是父元素的方法')
+    	}
+    };
+    Person.prototype.play=function(){
+    	console.log('我是父元素原型的方法')
+};
+
+    function my(){
+    	this.play=function(){
+    		console.log('我自已的玩的方法')
+    	}
+    };
+    my.prototype=new Person();
+    console.log(new my());
+
+function Ipod(size){}
+function Itouch(color){}
+function Iphone(price){}
+
+Itouch.prototype = new Ipod();
+Iphone.prototype = new Itouch();
+
+new Iphone().__proto__    =====>  Iphone.prototype  =====> new Itouch()
+new Iphone().__proto__.__proto__   ======> Itouch.prototype =====> new Ipod()
+
+
+var ip1 = new Iphone();
+var ip2 = new Iphone();
+var ip3 = new Iphone();
+
+Iphone.prototype.price = 1000;
+
+ip1.price  === 1000
+ip2.price === 1000
+ip3.price === 1000
+
+Iphone.prototype.price = 2000;
+
+ip1.price  === 2000
+ip2.price === 2000
+ip3.price === 2000
+
+
+
+
+
+AJAX跨域   (JSONP $ CORS)
+跨域：跨当然是跨过去，域当然是别的服务器 (说白点就是去别服务器上取东西) 只要协议、域名、端口有任何一个不同，都被当作是不同的域
+
+同源策略
+所谓同源是指，域名，协议，端口相同，只要有一项不相同 则不为同源
+
+
+JSONP (Json With Padding)
+//定义一个回调函数cbk
+//生成一个script标签
+//将script标签src设定为要请求的路径
+//当请求成功时，返回一段代码
+//这段代码会调用cbk函数,同时将数据以参数的形式传给cbk

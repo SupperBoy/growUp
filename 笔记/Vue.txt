@@ -1,0 +1,591 @@
+﻿框架模式：
+框架模式是管理和组织代码的学问
+(1)MVC是最常见的软件架构之一，业界广泛应用；
+  MVC分为三部分，view(用户界面) Contoller(业务逻辑) Model(数据保存);
+  说明：view传送指令到controller
+        controller完成业务逻辑，model改变状态
+        Model将新的数据发送到view，用户得到反馈；
+
+  特点:所有的通信都是单向的
+  互动模式：
+  接受用户指令时，MVC分为两部分，一种是通过View接受指令，传递给controller:另一种是直接通过controller接受指令;
+(2)MVP
+   MVP模式将Controller改名为Presenter,同时改变了通信方向；
+    1、各部分之间的通信，都是双向的；
+    2、View和Model不发生联系，都是通过presenter传递
+    3、view非常薄，不部署任何业务逻辑，没有任何的主动性，而presenter则是所有的逻辑部署都在哪里
+(3)MVVM
+MVVM模式将presenter改名为ViewModel,基本上与MVP模式完全一致。
+  view ViewModel Model
+  唯一的区别是，它采用的是双向绑定，view的变化，自动反映在viewModel；
+
+一、了解Vue
+Vue.js 是什么？
+
+Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用单文件组件和 Vue 生态系统支持的库开发的复杂单页应用。
+Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。
+
+官网 http://cn.vuejs.org/
+Vue.js CDN：https://unpkg.com/vue/dist/vue.js
+
+NPM版本要高于3.0 查看版本:npm -v
+ 低的话要升级:  cnpm install npm -g
+
+项目构建步骤
+npm install --global vue-cli
+vue init webpack ***
+cd **
+npm install 
+npm start
+
+ 
+代码初识
+Hello Vue（通过元素选择器绑定数据）
+
+<div id="app">
+	{{ message }}
+</div>
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		message: 'Hello Vue!'
+	},
+	methods:{
+		showMsg:function(){
+		alert(this.message)
+	}
+})
+学习完其他框架之后再和其他框架作比较?????
+
+
+_________________________________________________________________
+基本用法：
+
+1、v-xxx
+
+2、属性绑定v-bind  缩写  ‘:’
+<a :title='1' ></a>
+<a v-bind:href="url"></a>
+<!-- 缩写 -->
+<a :href="url"></a>
+
+3、事件绑定 v-on  缩写 ‘@’
+
+<a v-on:click="doSomething"></a>
+<!-- 缩写 -->
+<a @click="doSomething"></a>
+
+
+1、模板表达式
+<!-- 流控制也不会生效，请使用三元表达式和逻辑表达式 -->
+{{ if (ok) { return message } }}  
+{{ ok&& message}}
+{{ ok?message:’’}}
+{{msg==''?1:2}}
+
+2、html内容 v-html    
+
+动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击。
+请只对可信内容使用 HTML 插值，绝不要对用户提供的内容插值。
+eg:{{htmlstr}}
+   htmlstr:"<a href='todolist.html'></a>"
+
+v-cloak，在元素的最外面加v-cloak属性，另外手动的在style中加[v-cloak]{dispaly:none};表示一开始元素信息全部隐藏，等数据解析出来才会显示
+v-html 绑定标签
+v-text, 绑定文本 
+v-pre , 不当做数据去解析
+v-if, 对DOM节点的添加和移除(不需要切换的时候用v-if,切换的时候消耗性能)
+v-show, DOM的显示和隐藏(频繁的切换，初次渲染的时候消耗性能)
+v-model,   
+v-for="(item,index) in arr" :key='index'
+:style='obj'||'{}'
+:class="{'box-bg':true}"注意JS中不识别-，要记得加引号
+:class=[red,blue]
+过滤器：
+全局定义
+Vue.filter('reverseMsg',function(value){
+	return value.split('').reverse().join('');
+});
+局部定义:
+new Vue({   
+	 el:"#box",
+	 data:{
+	 	message:"msg" 
+	 },
+	 filters:{
+		//局部定义        
+		reverseMsg:function(value){
+		   return value.split('').reverse().join('')      
+		} 
+	  }
+})
+
+计算属性：computed
+new Vue({    
+	el:"#box",   
+ 	data:{     
+   		message:"msg"    
+   	},
+    computed: {
+		fullName: function () {
+    		return this.firstName + ' ' + this.lastName
+		}
+	}
+})
+
+
+watch（一般执行异步操作或开销较大的操作）:
+new Vue({   
+	el:"#box",   
+  	data:{
+     	message:"msg"    
+  	},   
+  	watch: {
+		firstName: function (val) {
+			this.fullName = val + ' ' + this.lastName
+		},
+		lastName: function (val) {
+			this.fullName = this.firstName + ' ' + val
+		}
+ 	}
+})
+
+vue-resource（支持 jsonp）
+cdn:<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+// 基于全局Vue对象使用http
+Vue.http.get('/someUrl').then(successCallback, errorCallback);
+Vue.http.post('/someUrl').then(successCallback, errorCallback);
+
+在一个Vue实例内使用$http
+this.$http.get('/someUrl').then(successCallback, errorCallback);
+this.$http.post('/someUrl').then(successCallback, errorCallback); 
+
+axios   
+CDN:<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+1、事件绑定
+    v-on:eventname
+    简写
+    @eventname
+
+2、阻止冒泡
+   e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+    <div id='inner' @click.stop='inner'></div>
+    
+    阻止默认事件
+    e.preventDefault?e.preventDefault():e.returnValue=false;
+    <a href="" @click.prevent='aa'> 链接</a>
+
+3、键盘事件
+   ev.keyDown
+
+4、通过键值绑定事件
+    @keyup.13="show()"
+    @keyup.enter="show()"
+
+事件修饰符:
+.stop  阻止事件冒泡
+.prevent 阻止默认事件
+.capture 事件捕获模式
+.self  只触发我本身(不包含子元素)__________
+
+
+该元素本身（而不是子元素）触发时触发回调
+按键修饰符:
+.enter 
+.tab
+.delete (捕获 "删除" 和 "退格" 键)
+.esc
+.space
+.up   38
+.down 40
+.left 37
+.right 39
+.ctrl
+.alt
+.shift
+
+生命周期
+Vue实例是一个完整的生命周期，即从开始创建，初始化数据，编译模板，挂载DOM,渲染更新，渲染卸载的过程，成为生命周期.
+创建
+beforeCreate 
+created
+
+添加
+beforeMount
+mounted （在这里进行数据请求）
+
+更新
+beforeUpdate
+updated
+
+激活（动态切换的时候会触发）
+activated
+deactivated
+
+销毁  （主动销毁this.$destroy()）
+beforeDestroy   
+destroyed
+
+组件与传递数据
+1、组件的定义与注册
+	1.通过Vue.extend定义组件
+	    var Header=Vue.extend({
+			template:`<h1>我是header标签</h1>`,
+			data(){**************以函数返回的形式
+			   return {
+
+			   }
+			}
+		});
+	2.注册组件
+	    Vue.component(‘v-header’,Header); //组件名不能和html标签名一样
+	3.使用组件
+	    <v-header></v-header>
+
+2、组件的定义和注册2
+	//1.直接定义组件
+	    var Header={
+	        template:‘<h1>这是一个头部组件</h1>’        
+	    }
+	//2.注册组件
+	var vm=new Vue({
+	    el:‘#box’,
+	    data:{
+	        name:‘zhangsan’
+	    },
+	    components:{
+	        ‘v-header’:Header   //在vue内部注册组件
+    	}
+    });
+3、组件的数据和方法
+   组件可以自己定义方法和数据（数据必须通过方法返回）
+
+   var Header={
+       template:'<h1 @click="change()">{{name}}</h1>',
+       data:function(){   /*组件里面定义数据的方式*/
+            return {
+               name:'头部组件',
+             }
+       },
+       methods:{
+           hange(){
+             this.name='头部组件变';
+             alert('this is a  Header component  run');
+           }
+       }
+   };
+
+4、组件的模板
+	1、通过script创建
+	<script type="x-template" id="header">
+	    <div class="header">
+	        <p>{{msg}}</p>
+	        <button @click="run()">这是一个按钮</button>
+	    </div>
+	</script>
+
+	2、或者通过template标签创建
+	<template id=" header ">
+	    <div class="header">***这里需要有一个根元素
+	        <p>{{msg}}</p>
+	        <button @click="run()">这是一个按钮</button>
+	    </div>
+	</template>
+	3、使用
+	var Header={template:'#header‘}
+
+4、组件标签的内容分发
+	1、通过<slot></slot>插入组件标签嵌套的内容
+	<div id="box">
+	  > <v-header><span slot ='text'></span></v-header>
+	</div>
+	<template id="aaa">
+	    <div>
+	        <slot  name=”text”>
+	            这是默认情况下的内容
+	        </slot>
+            
+	    </div>
+	</template>
+
+组件通信
+1、父组件控制子组件通信（props）
+	1、调用组件
+	       <v-content>
+	         	<v-list :list-fata="listData"></v-list>
+	       </v-content>
+	2、在content组件内部通过props接受
+	      props:['list-data']
+		list-data表示标签的属性时不能用驼峰
+    3、在模板中用的时候再用驼峰
+       <li v-for='(item,index) in listFata'>{{item}}</li>
+    
+    组件内部接收数据
+	props:{
+ 		msg:String,   /*msg必须是 字符串类型*/  myNum:{        
+ 			type:Number,
+       		default:101   
+ 		}
+ 	}
+
+2、子组件控制父组件通信
+    1、调用父组件传递方法给子组件
+
+    2、通过事件触发
+
+    事件传递
+    <v-nav :m="msg" @to-parent="getChildData"></v-nav>
+
+    子组件调用
+     this.$emit('to-parent',this.msg);
+     this.$on('sum',this.fnAdd)
+3、无关系的组件通信
+    Var Event = new Vue();  
+    执行事件触发：
+    Event.$emit('sendMsg ',this.msg);
+    mounted接受:
+	Event.$on(‘sendMsg',function(msg){
+	    that.text=msg;
+	})
+
+	
+4、动态组件
+   通过component 载入组件is属性是要使用的组件，可以绑定动态数据
+
+	<component  :is=“‘list1’"></component>
+	var vm=new Vue({
+	   el:'#box',
+	   data:{
+	        list:'list1'
+	   },
+	   components:{
+	        'list1':{
+	            template:'<div>list1组件</div>'
+	         },
+	         'list2':{
+	            template:'<div>list2组件</div>'
+	         }
+	  }
+	});
+
+组件缓存 keep-alive
+
+通过keep-alive可以监听activated， deactivated的钩子函数,
+在组件list1||list2中执行activated
+<keep-alive>
+   <component :is="list"></component>
+</keep-alive>
+
+取消缓存
+	在组件中
+	deactivated(){
+      		this.$destroy(true)
+	}
+
+
+自定义指令：
+1、定义指令
+Vue.directive('color-swatch', function (el, binding) {
+       el.style.backgroundColor = binding.value
+})
+2、调用指令
+<div class="v" v-color-swatch="'red'">这里的值可以使静态字符串，也可以是变量或对象</div>
+
+el: 指令所绑定的元素，可以用来直接操作 DOM 。
+binding: 一个对象，包含以下属性：
+	name: 指令名，不包括 v- 前缀。
+	value: 指令的绑定值， 例如： v-my-directive="1 + 1", value 的值是 2。
+	oldValue: 指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中
+	arg: 传给指令的参数。例如 v-my-directive:foo， arg 的值是 "foo"。
+
+自定义指令钩子：
+1、bind: 只调用一次，指令第一次绑定到元素时调用，初始化动作。
+
+2、inserted: 被绑定元素插入父节点时调用
+
+3、update: 被绑定元素所在的模板更新时调用
+
+Vue.directive('color-swatch', {   
+ 	bind:function (el, bind) {
+        el.style.backgroundColor = bind.value
+    },
+    update:function (el, bind) {
+        el.style.backgroundColor = bind.value
+    }
+});
+
+
+过渡动画：
+自定义指令钩子
+ 只使用于出现,消失和列表
+Vue 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+
+需要给transition 提供一个过渡的name
+<div id="demo">
+<button v-on:click="show = !show">
+	Toggle
+</button>
+<transition name="fade">
+	<p v-if="show“ class=“text”>hello</p>
+</transition>
+</div>
+
+css
+.fade-enter-active, .fade-leave { transition: opacity 2s;}
+.fade-enter, .fade-leave-active {opacity: 2s}
+
+需要通过的4个class控制切换
+
+1、fade-enter: 定义进入过渡的开始状态
+
+2、fade-enter-active: 定义进入过渡的结束状态。
+
+3、fade-leave: 定义离开过渡的开始状态。
+
+4、fade-leave-active: 定义离开过渡的结束状态。
+	.fade-leave-active{
+		opacity:0;
+		transition:all 2s;
+		background:red;
+	}
+	.fade-leave{
+		opacity: 0;	
+		transition:all 2s;
+	}
+	.fade-enter{
+		opacity: 0;
+		transition:all 2s;
+	}
+	.fade-enter-active{
+		transition:all 2s;
+		background:green;
+	}
+
+animate动画
+只需要在v-enter-active和v-leave-active，定义进入和离开的动画
+
+.bounce-enter-active {
+   animation: bounce-in .5s;
+}
+.bounce-leave-active {
+   animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+ }
+@keyframes bounce-out {
+   …
+}
+
+Animate.css
+1、在页面引入animate.css
+2、transition标签上加进入和离开时的class（注意还需要animated ，
+这个是animate.css动画需要的）
+
+<transition
+enter-active-class="animated tada"
+leave-active-class="animated bounceOutRight"
+>
+
+<p v-if="show">hello</p>
+</transition>
+3、选择自己想要的动画tada， bounceOutRight
+
+给一个循环列表加动画
+
+<transition-group 
+enter-active-class="zoomInLeft animated" 
+leave-active-class="zoomOutRight animated">
+
+  <p v-for='(item,index) in lists':key='index' v-show='show'></p>
+
+</transition-group>
+
+console.log(this.$children[0].con)//如果知道子组件的顺序，直接传递下标即可，然后访问数据
+console.log(this.$refs.one.$data.con);
+指定子组件的名称，然后访问数据
+console.log(this.$parent.aa)
+//访问父组件的数据
+
+
+路由：
+mode:"history" history模式  默认是hash模式
+https://unpkg.com/vue-router/dist/vue-router.js
+    1、//定义组件
+	var Home={
+		template:'<h1>我是home</h1>'
+	};
+	var New={
+		template:'<h1>我是New</h1>'
+	};
+	//路由配置
+	var routes=[
+	{path:'/home',component:Home},
+	{path:'/new',component:New},
+	{path:'*',redirect:'/home'}
+	];
+	//创建vueRouter实例
+	var router=new VueRouter({
+		routes
+	});
+	//把router实例挂载上去
+	new Vue({
+		el:'#app',
+		router,
+		data:{
+
+		},
+		methods:{
+
+		}
+	})
+	//默认选中的有router-link-active类名
+
+	路由的嵌套
+	<router-link to='/new/detail1/age/90'>详情一</router-link>
+    <router-link to='/new/detail2/age/80'>详情二</router-link>
+    <router-link to='/new/detail3/age/70'>详情三</router-link>
+	children:[
+			{path:':aa/age/:age',component:Detail1}
+		];
+		获取路由的信息
+		$route.params
+
+
+requestAnimationFrame
+当我们写window.requestAnimationFrame(回调函数)时，浏览器会在下次重绘前执行回调函数。
+
+请求数据的时候
+npm install vue-resouce axios --save
+
+构建项目中vue-resource用法
+import  vueResource from 'vue-resource'
+Vue.use(vueResource);
+
+axios的用法:
+import axios from 'axios'
+Vue.$http.axios=axios;
+
+vue提供了服务器代理的方法
+访问：http://aura.maizuo.com/api/recommend/home?page=1&num=20
+设置:在config下面的index.js中proxyTable
+{
+	'/api':{
+		target:'http://aura.maizuo.com/api',
+		changeOrigin:true,
+		pathRewrite:{
+			'^/api':''
+		}
+	}
+}
+
+设置mock访问的路径
+mock数据的时候需要修改数据build中dev-server.js
+app.use('/mock',express.static('./mock'))
+
+详情页的请求
+http://aura.maizuo.com/api/item/desc?id=15
+            item?id=15
+详情页访问ID :this.$route.params

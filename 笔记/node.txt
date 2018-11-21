@@ -1,0 +1,66 @@
+1、http模块
+	HTTP模块主交互
+	http.createServer(callBack).listen(端口,ip(String))
+	callBack两个参数 req,res
+	req 包含传递的数据
+		req.method 提交方式
+		req.url		url
+	res 返回数据
+		res.writeHead()	设置请求头
+		res.write()	返回数据
+		res.end()	返回数据并且停止表示返回完毕
+2、fs模块
+	fs模块主操作文件
+	__dirname 文件所在的文件目录
+	由于fs读取文件的路径受终端的影响所有一般加上__dirname
+	fs.stat(path,callBack)	获取文件的信息
+		path 路径
+		callback 回调函数两个参数 err,stats
+			err 错误信息
+			stats 得到的文件的信息
+	fs.mkdir(path,callBack)	创建一个文件夹
+			callBack 一个参数 err
+			err 错误信息
+	fs.writeFile(path,content,callBack)	创建文件
+			callBack 一个参数 err
+	fs.readFile(path,callBack)	读取文件的内容
+			callBack两个参数 err,contents
+			contents 读取到的内容
+	fs.readdir(path,callBack)	读取文件夹
+			callBack两个参数 err,arr
+			arr 文件夹内的文件列表
+	fs.unlink(path,callback)	删除文件
+			callback一个参数 err
+	fs.rename(oldPath,newPath,callBack) 重命名
+			oldPath	操作的文件的路径
+			newPath 新的文件的路径名字
+			callback 一个参数 err
+3、path模块
+	path模块主操作路径
+	path.basename(url)	返回文件名字
+	path.extname(url)	返回文件的后缀名
+4、url模块
+	url模块主操作路径
+	var urlObj = url.parse(url,true)	返回包含URL信息的对象
+	var path = urlObj.path(）path路径 端口后面，锚头前面
+	var port = urlObj.port() 端口号
+	var pathName = urlObj.pathname() 路径，不包括传递的参数即?前面
+	var hash = urlObj.hash() 锚头
+	var query = urlObj.query() 包含参数的对象
+	var search = urlObj.search() 参数的字符串形式
+	var host = urlObj.host() 域名加端口
+	var hostName = urlObj.hostname() 域名
+	var href = urlObj.href() 获取完整的URL链接
+
+5、express模块
+	设置静态文件 express.static()
+	use(path, express.static(path1));
+	当访问url是以path开头的时候，会自动去找path1路径下面的文件
+	
+	设置路由
+	index.js
+	app.use('/aa', require(aa.js));
+
+	aa.js
+	var router = require('express').router();
+	router.get('/bb', fun); //这里忽略最前面的aa 

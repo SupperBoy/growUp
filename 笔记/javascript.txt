@@ -1,0 +1,816 @@
+<script type='text/javascript'>
+	window.onload=function(){页面加载完成再执行}
+	document.addEventListener('DOMContentLoaded',function(){DOM树加载完成再执行});
+	img.onload=function(){图片加载完成...}
+</script>
+
+javaScript能用来干什么？
+	1、可以对数据进行验证
+	2、可以将动态的文本写入HTML
+	3、可以检测浏览器
+	4、可以读取HTML的内容
+	5、可以创建cookies
+	6、可以对事件做出响应
+
+javaScript是什么？
+	是一种基于对象和事件驱动的松散型的解释型语言
+
+javaScript的组成部分
+	ECMAScript
+	BOM(浏览器对象模型)
+	DOM(文档对象模型)
+
+JavaScript的输出工具
+	1、alert();	弹出，没有返回值
+	2、document.write()；把内容写到HTML中，不建议使用
+	3、prompt('问题（不可写）','答案(可读写)')弹出框返回答案，可用变量接受
+	4、console.log()在控制台打印（推荐使用）
+	5、confirm（）	弹出一个带有确定和取消按钮的对话框，确定返回真，取消返回假
+
+JavaScript的放置与引用
+	放置
+		<scrpipt>代码</script>
+		xxx.js文件
+	引用
+		<script src='路径'></script>   	引入外部文件
+		onclick='alert(1)'		在事件后面引用
+		<a href="javascript:alert(1)">	在超链接后引用
+		<form action=“javascript:document.write(‘hahaha')”  method=“” name=“”>在重定向后引用
+
+注释
+	//	注释行
+	/**/	注释块即注释多行
+
+JavaScript的命名规范
+	1、变量的首字母必须以字母、下划线(_)、或$符开头，后面可以是字母、下划线、数字、$。
+	2、变量的命名要有意义
+	3、严格区分大小写
+	4、';'分号的用法
+	5、变量命名的时候不能使用关键字和保留字
+	6、js的命名习惯:
+		驼峰命名法	myName
+		首字母大写法	Object	Function
+变量：
+	变量就是一个容器
+	var name='aa'; =表示赋值
+	覆盖变量
+	定义一个变量之后，再定义一个相同的变量；这个变量会覆盖之前的变量。如果后面的变量没有赋值，就不会覆盖之前的变量
+
+创建变量
+	1、先声明后赋值；var a;	a='';
+	2、声明同时赋值；var a='';
+	3、先创建多个变量，再赋值	var a,b,c;	a='',b='',c=''
+	4、同时创建多个并赋值		var a='',b='',c=''
+
+如果变量没有声明，同时也没有赋值，会报错
+	没有var关键字声明但是赋值，不会报错。系统会把它当做全局变量去处理，但是不推荐使用
+
+
+JavaScript常见的数据结构
+栈：（存放引用即是快捷方式）
+	特点：先进后出，后进先出
+堆：（存放数据）
+	特点：先进先出，后进后出
+
+JavaScript的数据类型
+	1、初始类型（原始类型）；空间固定
+		undefined;(没有定义)
+		null(空)特殊的数据类型
+		number(数字)
+		string(字符串)
+		boolean(布尔值)true false
+	2、引用类型;(空间不固定)
+		object;(对象)
+
+运算符
+1、数学运算符
+	+	-	*	/	%
+'+'
+	任何数据类型和字符串相加得到的都是字符串，该字符串为拼接的结果
+	当数据都是nuber时就是正常数学的相加
+'-'
+	都是number类型就是正常运算
+'%'
+	取余数
+a++	先赋值后相加
+++a	先相加再赋值
+
+2、比较(即关系)运算符：(结果是布尔值)
+>	<	>=	<=	==	===	!=	!==
+ASCll码值：
+	空格：32
+	0-9:48-57
+	A-Z：65-90
+	a-z：97-122
+	1、布尔值和数值型比较的时候，布尔值会先转换成0或1再进行比较
+	2、都是字符串的时候，会先把字符串转换为ASCll码值再进行比较
+	3、都是数值类型再进行比较
+	4、当一个是字符串，另一个是数值的时候，先判断字符串能否转换为数值。如果不能转换，返回假
+	5、undefined和null进行比较时，两个等于为真，三个等于为假
+	6、==表示只判断值，===表示不仅判断值还判断数据类型
+
+任何数据类型都可以转换为布尔值
+	返回假：undefined	null	0	''	false
+	其他返回真
+
+逻辑运算符
+&&与	||或	！非
+	&&	都为真才是真，一个为假便是假
+	||	一个为真便是真，都为假才是假
+	！	取反
+
+三元运算符：	条件？为真：为假；
+
+特殊运算符
+typeof	new	()
+	typeof	用来检测数据类型，返回的都是字符串
+	new	创建一个对象
+	()	优先级	函数的运行
+
+数据类型转换
+数据类型的强制转换
+1、number();可以将任何的数据类型转换为数值
+	布尔值		0或1
+	正常的数值类型，返回本身，忽略无意义的前导0和后导0
+	null		0
+	undefined	NAN(Not a Number)
+	空字符串转换为0，数值型字符串转换为十进制数（忽略前导0和后导0），其他返回NAN
+	如果是对象，先调用valueof()再调用tostring
+parseInt();将字符串转换为整数型，他是一个一个去检测的
+	如果是浮点型的字符串，转换为整数型（忽略无意义的0）
+	如果字符串的开头不是数字、空格、-，返回NAN
+	如果字符串的第一个是空格会忽略空格直到找到第一个非空的数值，到非数值的字符结束
+parseFloat()将字符串转换为浮点型（忽略无意义的0）
+	以第一个'.'为主
+	如果是数值型的字符串，并且第一个'.'的后面是无意义的0，则会忽略转换为整数型
+tostring()可以将任何的数据类型转换为字符串
+	说白了就是加个引号
+boolean（）可以将任何的数据类型转换为布尔值
+	undefined、null、0、空字符串、false转换为false其他都是true
+
+隐式类型转换
+	1、isNaN()判断一个数据类型是否不是一个数值型；隐式的调用number()进行转换，是数值为false，不是数值为true
+	2、alert()隐式调用string()
+	3、运算符：+	-	*	/	%隐式调用number();如果转换不成功返回NAN
+		+	如果是数值就相加
+		任何数据类型和字符串相加都会隐式调用string()进行拼接返回拼接的结果
+		如果是布尔值则调用number()进行转换
+	4、关系运算符：返回的是布尔值；
+	<  >    <=   >=    ==   ===    !=   !==
+		A、字符串——ASCll码；
+		B、数值——数值；
+		C、一个字符串一个数值——调用Number()函数进行转换，如果转换不成功，NaN,返回假；
+		D、Undefined——null;
+		E、都是数值型字符串；ASCll码值；
+		F、一个数值一个布尔值，布尔值调用Nunber()函数转换；
+
+流程控制
+什么是流程控制？	答：流程控制就是代码执行的顺序
+*****注意：预解析时，变量冲突会忽略值，函数冲突会覆盖，函数和变量冲突时函数覆盖变量
+1、顺序结构
+	var  function	会预解析其他的按顺序运行
+2、选择结构（单路分支、双路分支、多路分支、嵌套分支）
+	单路：if(){}
+	双路：if(){}else()
+	多路：if(){}else if(){}else{}
+	switch(数据){
+		case '条件一'：
+		执行的代码；
+		break；
+		case '条件二'：
+		执行的代码；
+		break；
+		default:
+		以上多不符合执行
+	}
+	if(可写条件)而case '固定的值'
+	嵌套分支
+	if(条件){
+		if(){
+		}else{
+		}
+	}else{
+	}
+循环结构
+	for(var i=0;i<arr.length;i++){
+	
+	}
+	while(条件){执行的代码}
+	只要条件为真就一直执行使用要慎重，容易进入死循环
+	do{	}while(条件)
+	先执行再判断，所以无论条件为真为假都会执行第一次
+	for(var i in obj){
+		i对象的键
+		obj[i]对应的值
+	}
+	多用于对象的遍历
+****1、break跳出循环，所以是彻底终止
+****2、continue跳出语句，只终止当前循环
+
+
+JavaScript函数
+1、什么是函数？
+答：将完成某一功能的代码集合起来，并且可以重复使用的代码块
+2、函数的声明
+A、对象声明
+	var fun=new Function()
+	fun.name='name'
+B、function关键字
+	function fun(){
+
+	}
+C、字面量定义的形式（匿名函数）
+	var fun=function(){}
+
+区别：
+	1、如果函数名相同，后面的会覆盖前面的
+	2、预解析只预解析var和function这两个关键字，所以匿名函数只有到执行到的时候才会赋值
+	3、在不同的script标签队中，下面的可以调用上面的，上面无法调用下面的函数，所以预解析只在同一个script标签队中
+	
+参数
+	可以动态的改变函数体中的数据和数据类型，使同一个函数实现能够得到不同的结果
+	形参：定义函数的时候传在括号里的变量就是形参，所谓的形参就是一种代表数据，可以代表任何数据根据实参
+	实参：调用函数时传入的数据，即是实参
+	参数的个数（最多25个）
+	形参和实参的数量一一对应
+	形参数量多于形参不会报错，多出的形参会默认赋值为undefined
+	实参数量多于形参也不会报错，但是想拿到多于的实参就要用arguments对象
+arguments对象
+	每一个函数都有一个arguments对象，该对象包含了所有调用时传递的实参信息
+	arguments.length可以拿到传入实参的数量
+	arguments.callee调用本身
+	arguments[0]访问传入的实参，下标重0开始
+函数的重载
+	同一个函数因为传入的参数不同，可以根据参数得到不同的实现，每种实现对应一个函数体。这就是函数的重载
+return语句
+	1、停止并跳出
+		A、一旦函数或者循环中出现return，就会停止，return后面所有的都不会执行
+		B、在函数内可以有多个return，但是只会执行一个
+	2、返回值
+		A、在函数中用来返回一个值，可以是任意的数据类型
+		B、只能返回一个值，如果要返回多个数据，请使用数组或者对象的形式返回
+		C、如果函数没有返回一个值，那么这个函数的值就是undefined
+JavaScript预解析和变量作用域
+	作用域：一段代码的作用范围
+一、全局作用域（即在何处都能访问到的代码）
+	最外层定义的变量或函数拥有全局属性
+	没定义直接赋值的变量拥有全局属性
+二、局部作用域（只能在固定的代码块中访问的代码）
+	函数中的变量
+	函数中的参数
+	由于函数存在销毁机制，所以函数中的变量参数都会在使用完之后被销毁，因此函数外部无法访问到函数内部的变量。但是函数外部的变量不存在销毁机制，所以函数内可以访问到函数外部的变量
+函数销毁机制的好处：可以提高程序的逻辑性和安全性，减少变量名的冲突
+
+环境
+	宿主环境（浏览器）
+	执行环境
+		执行环境决定了变量和函数的访问权限
+		全局环境
+		函数环境
+
+JavaScript回调函数、递归函数
+一、回调函数
+	通过函数的指针来调用函数。（把一个函数的指针作为另一个函数的参数，当调用这个函数的时候，这个函数就叫回调函数）
+	1、通过指针来调用
+	2、匿名方法
+	3、定义和调用同时进行
+二、递归函数
+	在函数内部直接或间接调用自己
+	递归都是死循环，所以递归要有结束条件
+三、内嵌函数（闭包）
+	闭包是一个可以在函数的外部访问该函数内部资源的函数
+	即是留下一个指针，使垃圾回收机制不会清理需要用的数据
+	function m1(){
+	     var x = 1;
+	     return function m2(){
+	          console.log(++x);
+	     }
+	}
+	m1()();  //2
+	m1()();  //2
+	m1()();  //2
+	var m2 = m1();
+	m2();  //2
+	m2();  //3
+	m2();  //4
+
+JavaScript内置顶层函数
+	名词解析：
+	1、函数
+	2、内置：ECMAScript
+		内置函数：ECMAScript自带函数Number()
+		宿主函数：BOM DOM alert() prompt() confirm()
+	3、顶层
+	字符串函数：str.fun()
+	数组函数：arr.fun()
+	顶层对象的函数，可以作用于任何对象
+内置顶层函数
+	1、escape()	对字符进行编码
+	2、upescape()	对编码的字符串进行解码
+	3、number()	转换成数值类型
+	4、string()	转换成字符串
+	5、boolean()	转换成布尔值
+	6、parseInt()	将字符串转换为整数型
+	7、parseFloat()	将字符串转换为浮点型
+	8、isNaN()	判断一个值是否不能转换为一个数值
+	9、isFinte()	判断一个数是否是又穷小数。不是有穷的数值或者不能转换为数值类型的数返回假
+	10、eval()	将字符串转换成JavaScript语句执行（必须符合JavaScript语法不然会报错）
+
+
+
+	
+
+javaScript对象
+什么是对象？
+	JavaScript中一切皆对象，对象只是一种带有属性和方法的特殊数据类型
+对象分为三种：
+	宿主对象
+		宿主，顾名思义就是js运行和存在的环境也就是DOM和BOM
+	内置对象
+		就是不用实例化可以直接使用其属性和方法的对象，内置对象只有两种Match和global(isNaN()、parseInter()、parseFloat()等都是他的方法)
+	本地对象
+		就是必须实例化才能使用它的属性和方法的对象，例如说Function、String、Data等等
+
+创建对象
+	1、构造函数方法创建
+		function fun1(){}
+		var obj=new fun1();
+	2、object创建
+		var obj=new Object
+	3、json（javascript object notation）方法原生格式，即字面量定义也是最常用的
+		var obk = {}
+属性和方法
+	如果对象的属性的值是一个函数，我们称这个属性为对象的方法，如果属性的值是一个数据类型，我们叫做属性
+1、构造函数
+	A、声明的时候添加
+		function fun1(){this.aa='aa'}
+		var obj1 = new fun1()
+	B、声明以后再添加
+		function fun1(){}
+		var obj1 = new fun1();
+		obj.aa = 'aa' 
+2、json方法（字面量）
+	A、声明的时候添加
+		var obj1 = {aa:'aa'}
+	B、声明以后再添加
+		var obj1 = new Object;
+		obj.aa = 'aa' 
+访问对象的属性及方法
+	属性	obj.aa
+	方法	obj.fun()
+对象的销毁
+	自动销毁
+		javascript自己的垃圾回收机制，就是在对象没有引用的时候释放内容（销毁）
+	手动
+		obj = null
+删除对象的属性及方法
+	delete obj.aa
+	使用delete关键字删除，注：使用delete删除一个不存在的属性时，不会报错，而且返回true。所以使用delete关键字删除一个属性不能保证这个属性存在，只能保证访问这个属性得到的是undefined
+
+DOM（Document Object Model文档对象模型）
+	浏览器在加载和显示页面时，需要解析HTML源码；在解析过程中会建立一个DOM模型
+	window.onload=function(){	}在页面加载完成后再执行
+常用的DOM节点类型
+	节点		节点类型(nodeType)	节点名字(nodeName)	节点值(nodeValue)
+	元素节点	    	1			标签名			null
+	属性节点		2			属性名			属性值
+	文本节点		3			#text			文本
+	注释节点		8			#comment		注释的文字
+	文档节点		9			#document		null	
+获取
+	document.getElementById('id')	通过ID获取标签
+	document.getElementsByClassName('class')通过class获取
+	document.getElementsByName('name')通过name属性获取，只适用于input
+	document.querySelector(str)	通过高级选择器获得页面中第一个符合的元素
+	document.querySelectorAll(str)	通过高级选择器获取页面中所有符合的元素
+				str	高级选择器。具体写法参考JQ的$();
+	obj.parentNode		得到父节点
+	obj.childNodes		得到所有的子节点
+	obj.firstChild		得到第一个子节点
+	Obj.firstElementChild	得到第一个子元素节点
+	Obj.lastChild		得到最后一个子节点
+	Obj.lastElementChild	得到最后一个子元素节点
+	obj.nextSibling		得到下一个兄弟节点
+	obj.previousSibling	得到上一个兄弟节点
+操作
+	创建节点：
+		document.createElement("要创建的标签")		这方法是document来调用的这个方法是创建节点。我们可以定义一个变量来接受这个节点
+		document.createTextNode()			创建内容节点
+	放置节点：
+		父元素.appendChild(放置的元素)			**把元素放到父元素的末尾
+		父元素.insertBefore(放置的元素，目标元素)	**把需要放置的元素放到目标元素的上面
+	删除节点：
+		父元素.removeChild(删除的元素)
+		***删除只是删除页面中的元素，内存中的元素不会删除，如果要彻底删除就要对象=null
+	修改元素：
+		父元素.replaceChild(替换的标签，目标标签)	用替换的标签替换掉目标标签
+	***他有2个参数；第一个是新建的标签；第二个是要被替换的旧标签
+	复制元素
+		coloneNode（true/false）;来复制某一个节点
+		***如果括号中为true就是复制这个元素和他的子元素
+		***如果为false就是只复制这个元素，不复制他的子元素。
+innerText		属性得到标签的内容（写什么就是什么相当于pre 不识别标签）
+innerHTML:		他是一种格式他不属于document（可以识别标签）
+getAttribute()		获取属性
+setAttribute()		设置属性
+
+事件
+1、鼠标事件
+	onclick		点击事件
+	ondblclikc	双击事件
+	onmouseover	鼠标移入事件（触发事件流）
+	onmouseenter	鼠标移入事件（不触发事件流）
+	onmouseout	鼠标移出事件（触发事件流）
+	onmouseleave	鼠标移出事件（不触发事件流）
+	onmousemove	鼠标移动事件
+	onmousedown	鼠标左键按下
+	onmouseup	鼠标左键抬起事件
+	onscroll	鼠标滚轮滚动事件
+2、表单事件
+	onfocus		获取焦点时调用
+	onblur		失去焦点时调用
+	onchange	失去焦点并且内容发生改变时调用
+	oninput		内容发生改变时调用（非IE9以下）
+	onpropertychange	value发生改变时调用（IE专属）
+	onsubmit	提价按钮被点击时调用
+	onreset		重置按钮被点击时调用
+3、键盘事件
+	onkeydown	键盘按下
+	onkeyup		键盘抬起
+	onkeypress	按键按下或按住
+4、其他事件
+	onresize	窗口或框架大小被改变时调用
+	onabort		图像加载被中断
+	onload		加载完成
+	onunload	退出页面
+event事件对象
+	event对象是一个内置对象，他不用声明。当事件发生时，event对象中会自动存储一些基本信息
+	使用：
+		onclick=function(e){}
+	兼容：
+		var ev = ev||event
+	event.clientX/event.clientY	鼠标在浏览器中XY坐标
+	event.offsetX/event.offsetY	鼠标在元素中的XY坐标
+	event.keyCode	按键编码
+	左37 上38 右39 下40	回车13	空格32
+	event.altKey	当你按下alt键时返回true
+	event.ctrlKey	当你按下ctrl键返回true
+	event.shiftKey	当你按下shift键返回true
+	event.taget	触发事件的元素
+	event.currentTarget	绑定事件的元素
+
+
+
+JavaScript=========Math对象
+	1、Math.random();		随机一个0-1的小数，扩大范围*num
+	2、Math.round();		四舍五入取整
+	3、Math.abs();			返回绝对值
+	4、Math.ceil();			向上取整
+	5、Math.floor()			向下取整
+	6、Math.pow(底数,指数)		指数运算
+	6、Math.sqrt()			开方根
+	7、Math.max()			返回最大值
+	8、Math.min()			返回最小值
+Math的三角函数方法
+	1、Math.sin()		返回参数的正弦
+	2、Math.cos()		返回参数的余弦
+	3、Math.tan()		返回参数的正切
+	4、Math.asin()		返回参数的反正弦（弧度值）
+	5、Math.asos()		返回参数的反余弦（弧度值）
+	6、Math.atan()		返回参数的反正弦（弧度值）
+
+
+javascript===========location对象
+	location对象用来操作URL
+http://www.example.com:8080/tools/disiplay.php?section=435#list
+1、属性
+	location.href	得到整个URL==>http://www.example.com:8080/tools/disiplay.php?section=435#list
+	location.protocol	得到网址的协议==>$http:
+	location.host	得到服务器名+端口号==>www.example.com:8080
+	location.hostName	得到服务器名==>www.example.com
+	location.prot	得到端口号==>8080
+	location.pathname	得到文件的路径==>tools/disiplay.php
+	location.search	得到搜索的内容即参数==>section=435
+	location.hash	得到#后面的内容（锚）
+2、方法
+	location.assign(url)	跳转至新页面
+	location.replace(url)	跳转至新页面（在历史记录中查不到）
+	location.reload()	刷新页面
+
+
+javascript============>history对象
+	history对象用来操作浏览器中的历史记录
+1、属性
+	history.length	得到历史记录的个数
+2、方法
+	history.back()	加载前一个，即后退一步
+	history.forward()	加载下一个，即前进一步
+	history.go(num)	加载第几个。num=0：刷新，num=1前进一步，num=-1后退一步
+
+JavaScript数组（数组是一个对象，Array对象）
+	数组是一个可以存储一组或是一系列相关数据的容器
+一、为什么要使用数组
+	1、为了解决大量相关数据的存储和使用问题
+	2、模拟真实的世界
+二、如何创建数组
+1、通过对象的方式来创建
+	var arr=new Array();
+	A、直接赋值
+		var arr=new Array(val1,val2,val3...)
+		var arr=new Array(num)
+		如果只有一个元素，并且这个元素是数值类型的，那么他就是指定数值的长度。并且值都是undefined
+		数组的属性：length属性——长度
+	B、声明之后再赋值
+		var arr=new Array();
+		arr[0]=1;
+		arr[1]=2;
+		对象[下标]=值
+2、隐式声明方式
+	var arr=[];
+	A、直接赋值
+	var arr=[1,2,3]
+	B、声明以后再赋值
+	var arr=[];
+	arr[0]=1;
+	arr[1]=2;
+
+数组的分类
+1、下标分类
+	A、下标是数字的类型的（索引数组）
+	B、下标是字符串类型的（关联数组）
+2、维度分类
+	A、一维数组
+	B、二维数组
+	声明二维数组
+		var arr=[[1,2.3],[4,5]];
+		arr[1][0]
+注意：
+	1、可以存储任何的数据
+	2、如果是索引数组，下标始终从0开始，如果指定了长度，但是没有赋值，他的值就会自动赋值为undefined
+
+数组的方法	true||FALSE 是否改变原数组
+	Array.isArray()	判断一个值是否是一个数组，返回一个布尔值。	FALSE
+1、添加删除
+	arr.push()	向数组的末尾添加一个或多个元素，返回新数组的长度	true
+	arr.unshift()	向数组的开头添加一个或多个元素，返回新数组的长度	true
+	arr.pop()	删除数组的最后一个元素，返回删除的元素	true
+	arr.shift()	删除数组的第一个元素，返回删除的元素	true
+	arr.splice(index,num,val)	万能的添加删除	true
+		index	下标，开始的位置
+		num	数值，删除的长度
+		val	添加的元素
+2、转换
+	arr.json()	把数组元素按照指定分割符分割转换成一个字符串，如果没有指定分隔符，默认是','返回的结果就是所有元素组成的字符串	FALSE
+	arr.toString()	把数组转换为字符串，并返回结果	FALSE
+	arr.reverse()	把数组顺序颠倒，返回结果	true
+3、查找
+	arr.indexOf()	返回指定元素在数组中第一次出现的位置，如果没有返回-1，它还可以接受第二个参数，表示开始搜索的位置	FALSE
+	arr.lastIndexOf()返回指定元素在数组中最后一次出现的位置，如果没有返回-1，它还可以接受第二个参数，表示开始搜索的位置	FALSE
+	arr.valueOf()	返回数组本身	FALSE
+4、截取
+	arr.slice()	它可以接受两个参数，第一个是开始的位置（下标），第二个截取的长度（不包括该位置），如果不指定长度会直接截取到最后，返回新数组不改变原数组	FALSE
+5、循环
+	arr.forEach()	对数组的每一个成员依次调用一个函数，该函数有三个参数：elem(当前元素),index(当前元素的下标)，该方法没有返回值
+	arr.map()	对数组的每一个成员依次调用一个函数，该函数有三个参数：elem(当前元素),index(当前元素的下标),arr(原数组)，该方法会返回一个数组，该数组包含所有函数返回值
+	arr.filter()	赛选，该函数有三个参数：elem(当前元素),index(当前元素的下标),arr(原数组)，该方法返回一个数组包含所有符合条件的元素
+其他方法
+	arr.sort()	排序，参数是一个函数	true
+	arr.reduce()	从左往右计算	FALSE
+	arr.reduceRight()从右往左计算	FALSE
+
+JavaScript==========>String对象
+
+一、属性
+	str.length	返回字符串的长度
+	str.constructor	对象的构造函数
+
+二、方法
+1、获取类型
+	str.charAt(num)	返回在指定位置的字符串
+	str.charCodeAt(num)	返回在指定位置字符的Unicode编码值
+	str.fromCharCode()	接受Unicode编码值返回对应的字符串
+2、查找类型
+	str.indexOf()		返回某个指定的字符串在字符串中首次出现的位置，搜索不到返回-1
+	str.lastIndexOf()	返回某个指定的字符串在字符串中最后一次出现的位置，搜索不到返回-1
+	str.match(str||RegExp)	搜索指定的值，返回值是一个数组，数组的成员是搜索到的值	abcd.match(b)//[b]
+				如果带有正则的g修饰符，则会返回所有匹配到的成员。但是正则的lastIndex属性无效 abcda.match(/a/g)//[a,a]
+				如果搜索不到返回null	abcda.match(f)//null
+	str.search(str||RegExp)	返回第一次匹配成功的位置，匹配不到返回-1
+				正则的g修饰符与lastIndex属性无效
+	str.replace(str,newStr)	接受两个参数，搜索的内容，要替换的内容。将搜索到的内容替换为要替换的内容
+				如果第一个参数是个正则并且带有g修饰符，他会把所有匹配成功的都替换，否则只替换第一个
+				'aaa'.replace('a','b')//baa
+				'aaa'.replace(/a/,'b')//baa
+				'aaa'.replace(/a/g,'b')//bbb
+3、截取类型
+	str.splice(staNum,endNum)	返回指定开始到指定结束位置（不包含）的字符串，如果不指定结束位置就会截取到最后
+					支持负数，-1代表最后一个
+	str.subString(staNum,endNum)	返回指定开始到指定结束位置（不包含）的字符串，如果不指定结束位置就会截取到最后
+					不支持负数，负数会自动转换为0，当结束位置小于开始位置会自动转换两个参数的位置
+	str.subStr(staNum,length)	从指定开始位置截取指定长度的字符串。
+					staNum支持负数,-1表示最后一个，但是length参数不支持负数，负数会自动转换为0
+4、转换类型
+	str.split()			将字符串按照指定分割符转换为数组
+	str.toUpperCase()		讲字符串转换为大写
+	str.toLowerCase()		将字符串转换为小写
+5、其他方法
+	str.concat(str)			合并字符串
+	str.trim()			去除字符串两端的空格
+
+JavaScript=============>RegExp对象（正则）
+正则表达式是一种表达文本的方式，有点像模板字符串，通常用作按照给定模式匹配文本的工具
+
+创建
+	字面量的形式
+		var reg = /abc/
+	
+	使用构造函数
+		var reg = new RegExp('abc')
+修饰符：i/g/m
+	i:不区分大小写
+	g:匹配全局
+	m:匹配多行
+
+
+正则对象的属性
+	var reg = /abc/img;
+	var result = reg.ignoreCase;	//true	检测是否有i修饰符
+	var result = reg.multline;	//true	检测是否有m修饰符
+	var result = reg.global;	//true	检测是否有g修饰符
+	lastIndex	返回下一次开始搜索的位置，可读写。单只有在设置g修饰符时有效
+	source		返回正则表达式的字符串形式，只读
+
+正则对象的方法
+	reg.test(str)	返回布尔值，表示是否匹配到参数。
+			如果正则表达式带有g修饰符，则每一次test方法都会从上一次结束的位置开始匹配。并且可以设置lastIndex属性
+	reg.exec(str)	返回一个数组，成员是匹配成功的参数。匹配失败返回null。
+			如果正则表达式包含组匹配，则返回的数组会包含多个成员，第一个是匹配成功的字符串。第二个是第一个组匹配，以此类推
+			他还有两个属性：
+				input	整个原字符串
+				index	整个模式匹配成功的开始位置
+			如果正则表达式带有g修饰符，则可以多次使用exec方法。下一次搜索的位置从上一次匹配成功结束的位置开始。同时也可以设置lastIndex属性
+
+字符串对象中可以使用正则的方法
+	str.math(reg)	返回一个数组，成员是所有匹配成功的字符串
+	str.search(reg)	匹配成功返回一个正数，失败返回-1
+	str.replace(reg)	按照给定的正则表达式进行替换，返回替换后的字符串
+	str.split(reg)	按照给定的匹配模式进行切割，返回一个数组，包含分割后的成员
+
+在正则中一共有12个特殊字符：
+^	.	[]	$	()	|	*	+	?	{}
+对于特殊字符我们需要 \ 转译
+	var reg = /\*/
+	var reg = new RegExp('\\*')	使用对象时要用双反斜杠
+
+	1、[]:匹配括号中的字符；/[abc]/（含有为真，没有为假）
+	2、[^ab]:除了ab匹配其他的任何字符（含有为假，没有为真）
+	3、[^]:括号中只有一个上尖括号代表的是匹配所有的字符（有内容为真，没内容为假）
+	4、[a-z]:“-”表示连接符，就是匹配从a字母到z字母之间所以的字母
+	5、点 . ：这个点代表的是任意字符；
+	6、*：表示某字符出现0次或者多次
+	7、？：问号表示出现0次或者1次
+	8、+：表示某字符出现1次或者多次
+	9、-；表示范围
+	10、/；转译字符
+	11、{m}：表示出现m次
+	12、{m，}：至少出现m次
+	13、{m，n}：至少出现m次最多出现n次；
+
+预定义模式
+	[0-9];[^0-9];[a-zA-Z0-9];[^a-zA-Z0-9];
+	\d===>[0-9];
+	\D==>[^0-9];
+	\w===>[a-zA-Z0-9];
+	\W==>[^a-zA-Z0-9];
+	\s==>匹配空、格换行符....;
+	\g==>匹配全局
+	
+捕获分组和非捕获分组：
+	捕获分组：如果匹配成功，调用exec()方法会返回分组匹配的内容
+	非捕获分组：如果匹配成功我们可以不返回分组匹配的内容。/(?:aa)/在分组内容前面加？：代表非分组匹配
+先行断言
+	x(?=y)	x只有在y前面才匹配成功（y不计入匹配中）
+先行否定断言
+	x(?!y)	x只有不在y前面才匹配成功（y不计入匹配）
+
+
+javaScript==========>data对象
+	具体实例参考阮一峰文档
+get类
+	1、var a=new Date();==>获取Date对象,可指定日期
+	2、getFullYear();==>获取年份
+	3、getMonth();==>获取月份；（0~11）；
+	4、getDate();==>获取当月的几号；
+	5、getHours();==>获取当前的时间：小时；
+	6、getMinutes();==>获取当前的时间：分钟；
+	7、getSeconds();==>获取当前的时间：秒；
+set类
+	1、setFullYear();设置年份
+	2、setMonth();设置月份
+	3、setDate();设置分钟
+	4、setHours();设置时间：小时
+	5、setMinutes();设置时间：分钟
+	6、setSeconds();设置时间：秒数
+	7、getDay();获取今天是周几（0~6）
+to类
+	1、toString()	返回一个完整的日期字符串
+	2、toUTCString()返回对应的UTC时间
+	3、toISOString()返回对应时间的ISO8601写法
+	4、toJSON()	返回JSON格式的ISO格式的日期
+	5、toDataString()返回日期字符串
+	6、toTimeString()返回时间字符串
+	7、toLocaleDataString()返回一个字符串，代表日期的当地写法
+	8、toLocaleTimeString()返回一个字符，代表当地时间的写法
+
+
+javaScript=========>Ajax
+
+创建对象
+	var ajax = new XMLHttpRequest()	非IE
+	var ajax = new ActiveXObject(MSXML.XMLHTTP)	IE
+通信规则
+	1、建立连接
+	2、WEB浏览器向web服务器发送请求
+	3、web浏览器发送头信息
+	4、web应答
+	5、web服务器发送应答信息
+	6、web服务器向浏览器发送信息
+请求头信息
+	就是客户端的环境、或者身份验证信息
+请求体
+	就是你要发送给后台服务器的正文
+status：服务器响应码
+	1xx	信息类
+	2xx	代表成功 200
+	3xx	重定向；请求失败。重新发送请求
+	4xx	客户端错误，表示客户端提交的请求有错误，404代表页面丢失
+	5xx	服务器错误。500
+readyState:服务器状态码：
+	0	初始化
+	1	载入
+	2	载入完成
+	3	解析
+	4	完成
+取得服务器的响应
+	responseText	获得字符串形式的数据
+	responseXML	获得XML形式的响应数据
+	status	获得服务器响应码
+	readyState	获得服务器状态码
+	getAllResponseHeader()	获取所有的响应头信息
+	getResponseHeader()	获取响应中某个字段的值
+	onreadystatechange()	监听服务器响应状态的事件
+
+ajax异步请求有两种方式	GET	POST
+	GET：请求方式是把要传递的参数放到URL中；它方便，但是量小，安全性低
+	POST：请求方式是吧要传递的参数放到send方法中，传递量大，安全性高
+ajax请求
+	ajax的get请求一共三步：
+	1.var re=new XMLHttpRequest()；创建XMLHttpRequest（）对象
+	2.re.open（'GET','get.php?name=zhangsan&sex=nv',true）；
+	       open的方法有三个参数
+		1.请求方式
+		2.URL：请求的地址+我们的数据
+		3.是否进行异步请求：  true代表异步请求；false代表非异步请求
+	3.re.send（）；提交请求
+
+	ajax的post请求：
+	1.var re=new XMLHttpRequest（）；
+	2.re.open（'POST',URL,true/false）;
+	3.re.setRequestHeader（'Content-type'，'application/x-www-form-urlencoded'）；头信息
+	4.re.send（）；如果是POST请求那么，就要把要进行传递的数据放到send括号中......;re.send('name=saner&sex=nan')
+
+var re = new XMLHttpRequest()||new ActiveXObject()	创建
+re.open(method,url,con)
+re.setRequestHeader('Content-type','application/x-www-form-urlencoded')头信息	//当是post方法时要写	
+re.send()
+re.onreadystatechange = function(){
+	if ( re.readyState == 4 && re.status == 200 ){}
+}
+
+****dateType:
+	text	responseText
+	XML	responseXML
+	js	responseText
+	json	responseText
+****date 如果是get方法  URL+‘？’+date
+****一般都会加上当前时间保证数据的最新
+
+解析
+使用eval()方法解析，如果是json对象的时候加括号转换为表达式
+var json='{"name":1,"id":2}'
+var result=eval('('+json+')');
+
+json.parse()//推荐，安全性比eval高
+JSON.parse()	讲JSON字符串转换成JS语言
+JSON.stringify()讲JS语言转换成JSON字符串
+
+
+ajax2
+	var xml=new XMLHttpRequest();
+	xml.open('post','1.php');
+	xml.responseType='json';
+	xml.onload=function(){
+		if(xml.status==200){
+			xml.response
+		}
+	}

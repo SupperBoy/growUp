@@ -1,0 +1,28 @@
+1、引入mongoose依赖包
+	const mongoose = require('mongoose')
+2、链接数据库
+   const db = mongoose.connect('mongodb://localhost:27017/name');
+3、检测链接事件
+    db.connection.on('open', function(err){
+        console.log('数据库连接成功');
+    })
+    db.connection.on('error', function(err){
+        console.log('数据库连接失败')
+    })
+    db.connection.on('disconnected', function(err){
+        console.log('数据库连接断开')
+    })
+4、创建模板
+    const Schema = mongoose.Schema;
+    const mySchema = new Schema({
+        name: String
+    })
+    添加方法到模板的原型上
+    mySchema.methods.speak = function(){}
+5、创建模块
+    let myschema = Mongoose.model('person', mySchema);
+
+6、创建数据实例
+    let firstDate = new myschema({
+        name: '老胡',
+    })

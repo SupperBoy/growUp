@@ -1,0 +1,38 @@
+
+声明式路由
+	<router-link to=''></router-link>
+编程式路由
+	route.push({})
+
+嵌套路由
+	children
+
+重定向
+	redirect
+
+别名
+	alias
+
+路由模式
+	hash	history
+	默认是hash 可以使用mode进行更改
+	history模式需要后台支持，不然会404
+
+路由传参
+	使用name跳转必须使用params传递参数
+	<router-link :to="{name:'home', params:{key:val}}"></router-link>
+	使用path跳转必须使用query传递参数
+	<router-link :to="{path:'/aa', query:{key:val}}"></router-link>
+
+router钩子
+全局钩子
+	router.beforeEach(function(to, from, next){})	跳转之前
+
+	router.afterEach(function(route){})	跳转之后
+
+	要确保next方法调用，否则钩子就不会resolved
+
+组件内的钩子
+	beforeRouteEnter(function(to, from, next){})	跳转之前，不能调用this
+	beforeRouteEnter(function(to, from, next){})	路由改变，重复调用。可以访问this
+	beforeRouteEnter(function(to, from, next){})	跳转完成，能调用this

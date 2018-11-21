@@ -1,0 +1,25 @@
+什么是Vuex？
+	Vuex是一个状态管理工具，他就像是object的prototype一样，存放着公共数据state，公共的方法mutation，公共的计算属性getter以及处理异步的action。他可以使用module区分成很多模块，当然包含那些数据。或许把他比作一个构造函数，所有的组件都是它的实例更合适。
+
+使用：	import Vuex from 'vuex'
+	Vue.use(Vuex)
+	const store = new Vuex.store({state,mutations,actions,getters})
+
+state
+	他就像是Vue实例中的data一样是一个存放数据的模块
+	调用：store.state.key
+	如果挂载到Vue实例中可以：this.$store.state.key
+	如果store实例中有多个模块： this.$store.modulea.state.key
+
+getter
+	相当于Vue实例中的computed
+	可以有两个参数 state getters
+
+mutation
+	相当于Vue实例中的method，但是他只能处理同步的
+
+action
+	与mutation差不多，只是他是处理异步的
+
+module
+	当状态比较多的时候可以区分为多个模块

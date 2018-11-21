@@ -1,0 +1,105 @@
+json是什么？
+	json全称：javascript object notation js对象标记
+	json是一种轻量级的数据交换格式。他基于ECMAScript规范的一个子集，采用完全
+
+
+	javascript对象标记法
+	json是轻量级的，基于文本的，可读的格式
+	json语法规则：
+		名称/值对组合成数组或对象
+		名称必须用双引号，不能用单引号，也不能没有引号
+		值对里面不允许有undefined和function但是可以有null；
+
+json和XML
+	json没有结束标签，解析更快，可以用数组
+
+json和XML的区别
+	XML定义扩展标记语言 (Extensible Markup Language, XML) ，用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。
+	JSON定义JSON(JavaScript Object Notation)一种轻量级的数据交换格式，具有良好的可读和便于快速编写的特性
+
+XML的优点　　
+	A.格式统一，符合标准；　　
+	B.容易与其他系统进行远程交互，数据共享比较方便。
+XML的缺点　　
+	A.XML文件庞大，文件格式复杂，传输占带宽；　　
+	B.服务器端和客户端都需要花费大量代码来解析XML，导致服务器端和客户端代码变得异常复杂且不易维护；　　
+	C.客户端不同浏览器之间解析XML的方式不一致，需要重复编写很多代码；　　
+	D.服务器端和客户端解析XML花费较多的资源和时间
+JSON的优点：　　
+	A.数据格式比较简单，易于读写，格式都是压缩的，占用带宽小；　　
+	B.易于解析，客户端JavaScript可以简单的通过eval()进行JSON数据的读取；　　
+	C.支持多种语言，包括ActionScript, C, C#, ColdFusion, Java, JavaScript, Perl, PHP, Python, Ruby等服务器端语言，便于服务器端的解析；　　
+	D.在PHP世界，已经有PHP-JSON和JSON-PHP出现了，偏于PHP序列化后的程序直接调用，PHP服务器端的对象、数组等能直接生成JSON格式，便于客户端的访问提取；　　
+	E.因为JSON格式能直接为服务器端代码使用，大大简化了服务器端和客户端的代码开发量，且完成任务不变，并且易于维护。
+JSON的缺点　　
+	A.没有XML格式这么推广的深入人心和喜用广泛，没有XML那么通用性；　　
+	B.JSON格式目前在Web Service中推广还属于初级阶段。
+
+
+
+
+字符串解析
+	json.parse(str)
+	eval('('+obj+')')	不安全
+
+对象转换成json字符串
+	JSON.stringify(value,relpace,space)
+	能够将JavaScript的值转换成JSON字符串，JSON.stringify()生成的字符串可以用JSON.parse()还原为javascript值
+	
+	参数：	
+	value:对象和数组
+		数组：则只有数组中存在名称才能被转换，且转换后顺序与数组中的值保持一致。
+	注意：当值是function或者undefined时不会转换，如果是[function(){}]会转换成[null]
+
+	replace：函数或数组
+	函数：则每一组名称/值对都会调用此函数，该函数返回一个值，作为名称的值变换到结果字符串中，如果是undefined，则忽略；
+
+	JSON.stringify(obj,fun);注意函数返回value值  改变value
+	JSON.stringify(obj,[name,name2,name3]);		只转换指定的name，其他的忽略
+
+	space：'\t' 制表符
+
+JSON和XML转换
+	jquery.js
+	jquery.json2xml.js
+	jquery.xml2json.js
+	xml转换json
+	var str="<root>"+
+		"<name>name</name>"+
+		"<age>age</age>"+
+		"</root>"
+	var result=$.xml2json(str);//转换成
+
+
+
+	JSON转换为xml
+	obj={
+		"name":'qw',
+		"age":12
+	}
+	$.json2xml(obj)
+
+
+
+
+	xml字符串转换成JSON对象
+	$.xml2json(str);
+	JSON转换成xml字符串
+	$.json2xml(obj);
+
+
+ajax和JSON
+
+
+GeoJSON
+点
+{
+"type":"point",
+"coordinates":[x,y]
+}
+线
+type:LineString
+coordinates:[[x,y],[x,y]]
+面
+type:polygon
+coordinates[[[x,y],[x,y],[x,y]]]

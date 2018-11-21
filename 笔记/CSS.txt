@@ -1,0 +1,479 @@
+						CSS2
+CSS全称
+	cascading style sheet	（层叠样式表） 
+	div+css		网页标准布局
+	div		内容
+	css		样式
+
+CSS 引入方法：
+	1.行内样式	<style="font-size:1;color:red">
+	2.嵌入样式	
+	3.外部引入	<link rel="stylesheet" href="">
+	4.导入样式	@import url(相对路径)；   
+        行内样式优先级最高，文档流顺序，从上到下，从左到右，后来居上。
+选择器
+	1、ID选择器		id='name'			#name{}
+	2、class类名选择器	class='name'			.name{}
+	3、元素选择器		<标签>内容</标签>		标签名{}
+	4、交叉选择器		<div class='aa'></div>		div.aa{}
+	5、后代选择器		<div class='aa'><p></p></div> 	.aa p{}	
+	6、群组选择器						div,p,a{}
+	7、通用选择器						*{}选择所有
+	8、伪类选择器		常用标签a			a:link{}么有访问过的
+								a:visited{}访问过的
+								a:hove{}鼠标悬浮
+								a:active{}鼠标点击的
+						顺序：l-v-h-a
+属性
+	@import url(路径)	导入
+	!important		最高级（一般不用）
+	opacity:0-1		透明度（值在0-1之间）
+	width:			宽度
+	height			高度
+文本
+	text-align:center	文字居中
+	text-align:left		文字靠左
+	text-align:right	文字靠右
+	vertical-align:top	文本靠上
+	vertical-align:middle	文本靠中间
+	vertical-align:bottom:	文本靠下
+	line-height:		行高
+	color:rgb();
+	color:#十六进制
+	color:英文		字体颜色
+	font-size:		字体大小
+	font-family:		字体样式
+	font-style:normal	无样式
+		   italic	斜体
+		   oblique	斜体
+	font-variant:normal	无样式
+		     small-caps	大写
+	font-weight:normal	无样式
+		    bold	文字加粗
+		    bolder	文字加粗
+		    lighter	轻量级加粗
+		    数值0-700	假猪
+	text-decoration:none	没有线
+			anderline——下划线
+			overline——上划线
+			line-through——删除线
+	wertical-align:super	上标
+			sub	下标
+	line-indent:2px		首行缩进
+背景
+	background-color:	背景颜色
+	background-image:	背景图片
+	background-repeat:repeat背景重复
+			repeat-X x重复
+			repeat-Y y重复	
+			no-repeat不重复
+	background-size:cover	平铺
+			contain	自适应
+			数值/百分百 指定大小
+	background-position:	背景定位
+	background-attachment:fixed	相对于浏览器
+			      scroll	相对于div
+浮动
+	float:left		左浮动
+		right		右浮动
+	clear：both		清除浮动（在后面加一个空元素使用这个属性）
+	overflow:hidden		隐藏多余部分（也可以清除浮动）
+		scroll		始终出现滚动条
+		visible		始终可见
+	box-sizing:border-box	清除盒子模型
+转换
+	display:inline-block	转换为行内块元素
+		block		转换为块元素
+		inline		转换为行内元素
+		none		隐藏
+	cursor：		鼠标悬浮在这个元素上时的样式
+定位：
+	position:static		静态定位（普通不定位）
+		fixed		固定定位（相对于浏览器，脱离文档流）
+		relative	相对定位（相对于本身，不脱离文档流）
+		absolute	绝对定位（相对于有定位属性的父元素，脱离文档流）
+	层级关系：
+		z-index:数值
+
+div里直接放img图片会有撑不满的现象，解决方法：
+	div{line-height:0px}
+	或者：img{vertical-algign:middle或者display:block}
+
+盒子模型
+	它在网页中的排列方式通常是横向排列，纵向排列，嵌套排列；
+	它是由外边距（margin）、边框（border）、内边距（padding）组成的
+	margin:0 auto;		块元素左右居中
+	padding：20px 20px 20px 20px;
+	一个值代表：上右下左
+	两个值表示：上下 左右
+	三个值代表：上 左右 下
+	四个值代表：上 右 下 左
+
+剪切
+	clip只能作用于拥有absolute属性的元素
+	clip:rect(上 右 下 左)
+
+常用线：
+	solid	实线
+	dashed	虚线
+	dotted	点线
+	double	双线
+	groove	槽线
+	ridge	脊线
+	inset	凹线
+	outset	凸线
+
+边框
+	border：宽度 线 color；
+	border-radius:设置圆角
+	一个值表示：四个角
+	两个值代表：左上右上  右下左下
+	三个值代表：左上 右上右下 左下
+	四个值代表：左上 右上 右下 左下
+
+关于padding和margin的常见问题：
+	1、不同的浏览器对body、div等默认有不同的margin和padding值
+	2、margin-top有一个bug：当给子元素设定margin-top值，并且父元素没有padding和margin值的时候，他的margin-top值会作用于他的父元素，解决方法：给父元素设定padding-top：>0的值
+
+图片精灵：
+	background-image:url()
+	background-position:X Y
+----------------------------------------------------------------------------------------------------
+										CSS3
+选择器：
+	id选择器
+	类选择器
+	标签选择器
+	交叉选择器
+	群组选择器
+	后代选择器
+	通用选择器
+CSS选择器的特性：
+	1、继承性（后代元素会继承前辈元素的一些属性和样式）
+	2、叠加性（同一个元素，被多个样式规则指定）
+	3、优先级（因为CSS的继承性和叠加性，就有了优先级）
+CSS的优先级：
+		行内样式
+	交叉	后代	子代
+		id选择器
+		class选择器
+		标签选择器
+		通配选择器
+		浏览器对标记预定义的样式
+		继承的样式
+CSS新增选择器：
+1、后代级别的选择器：
+	div p		后代
+	div>p		子代
+	p:only-child	父元素中只有一个p标签的
+	p:nth-child(2)	p的父元素中的第二个元素
+	p:nth-last-child(2)p的父元素中的倒数第二个元素
+	p:first-child	p的父元素中的第一个标签
+	p:last-child	p的父元素中的倒数第一个标签
+	:root		跟标签
+	p:empty		选择没有子节点的p标签（一定是空的，空格也不行）
+2、同辈级别的选择器
+	div+p		div后面第一个p
+	div~p		div后面所有的p
+	p:first-of-type	父元素中第一个p标签
+	p:last-of-type	父元素中倒数第一个p标签
+	p:only-of-type	父元素中只有一个p标签
+	p:nth-of-type(2)父元素中第二个p标签
+	p:nth-last-of-type(2)父元素中倒数第二个p标签
+3、伪类选择器
+	a:link		未被访问的
+	a:visited	已被访问的
+	a:hover		鼠标悬浮
+	a:active	被点击的
+	p:first-letter	第一个字符
+	p:first-line	第一行
+	p:before	在标签的内容的前面插入内容
+		p:before{
+			content:'1605B';
+		}
+	p:after		在标签的内容的后面插入内容
+	：root		跟标签
+	input:focus	获取焦点
+	input:enabled	可用的
+	input:disabled	不可用的
+	input:checked	只有opera浏览器可以使用
+	:not(p)		除了p之外所以的元素
+	::selection	被选中的文字的样式
+4、属性选择器：
+	[title]		有title属性的
+	[title='aa']	有title并且属性值是aa的
+	[title~='aa']	有title属性并且属性值的列表中有aa的
+	[title|='aa']	有title属性并且属性值是aa或者aa-
+	[title^='aa']	有title属性并且属性值的开头是aa
+	[title$='aa']	有title属性并且属性值的结尾是aa
+	[title*='aa']	有title属性并且属性值的字符中有aa的
+
+CSS hack
+	css hack由于不同厂商的浏览器，或者是同一厂商的浏览器不同版本，对CSS解析认识不完 全一样，导致生辰的页面效果不一样，得不到我们所需要的页面效果，这个时候我就需要针 对不同的浏览器去写不同的CSS,让他能够兼容不同的浏览器，能在不同的浏览器中也能得到 我们想要的页面效果。
+	简单的说，CSS hack的目的就是使你的CSS代码兼容不同的浏览器，当然我们也可以反过来 利用CSS hack为不同的版本的浏览器定制编写不同的CSS效果。
+常见的浏览器前缀：
+	-ms-	Microsoft	IE
+	-moz-	Mozilla  	Firefox
+	-o- 	Opera    	Opera
+	-webkit-Webkit  	Chrome
+浏览器的内核：
+	1、Trident内核：也叫IE内核，使用这个内核的有IE  360
+	2、Webkit内核： 也叫谷歌内核，常见的浏览器 chrome  枫树  太阳花
+	3、Gecko内核：  火狐
+	4、Presto内核	目前只有Opera浏览器使用
+
+
+边框
+	border-radius:左上 右上 右下 左下	边框圆角
+	border-image-source:url()		边框图片的路径
+	border-image-slice:			选取的宽度
+	border-image-width:			边框的宽度
+	border-image-outset:			边框图片超出边框的量
+	border-image-repeat:stretch(拉伸)
+			    round(铺满)
+			    repeat(平铺)
+
+
+背景：
+	background-image:url()			背景图片的路径
+	background-size:			背景图片的大小
+	background-color:			背景图片的颜色
+	background-clip:bordr-box(相对于边框)	背景颜色的原点
+			content-box(相对于内容)	
+			padding-box(相对于padding)
+	background-origin:border-box(相对于边框)背景图片的原点
+		 	content-box(相对于内容)	
+			padding-box(相对于padding)
+	background-repeat:repeat		背景图片重复
+			no-repeat不重复
+	background-position:			背景定位
+	background-attachment:scroll(默认)
+				fixed(相对于浏览器)
+
+
+文本
+	text-overflow:clip(修剪文本)
+			ellipsis(超出以省略号显示)
+			string(使用给定的字符串代表被修剪的文本)
+	white-space:nowrap(不换行)
+	text-indent:	首行缩进
+	-webkit-text-fill-color:填充的颜色
+	-webkit-text-stroke:width color  缩写
+	-weblit-text-stroke-width:描边的宽度
+	-webkit-text-stroke-color:描边的颜色
+
+	text-shadow:x偏移 y偏移 模糊的级别 color;	字体的阴影
+	
+	wrod-break:(非中日韩的换行规则)
+		normal（使用浏览器默认的换行规则）
+		break-all(允许在单词内换行)
+		keep-all(只能在连字符处换行)
+	wrod-wrap:（允许对长的补课分割的单词进行分割并换行到下一行）
+		normal(只在允许的断点换行)
+		break-word（在长单词或URL内部进行换行）
+	
+	HSL模式和HSLA模式
+		background-color:hsl(120,65%,76%)
+		background-color:hsls(120,65%,75%,0.3);
+
+	色调 0——360
+	饱和度0——100  0%:gray  100%:full
+	filter:Alpha(opacity=50);IE9以下实现透明度
+
+
+渐变：
+1、线性渐变
+	background:linear-gradient(red,blue)	从上到下
+	background:linear-gradient(to right,red,blue)从左到右
+	background:linear-gradient(to right bottom,red,blue)从左上到右下
+	background:linear-gradient(0deg,red,blue);旋转0度
+	background:linear-gradient(to right,red,blue 50%,yellow 30%);重复渐变
+	background:-webkit-gradient(linear,0 0,100% 0,form(#000),to(#fff),color-stop(0.5,green),color-stop(0.8,aqua));兼容写法，常用的
+	background:-兼容-gradient(方式，startX startY,endX endY,form(color),to(color),color-stop(0-1,color));
+
+径向渐变：
+	background:radial-gradient(red,blue,green);
+	background:radial-gradient(red 20%,blue 40%,green)设置百分百
+	background:radial-gradient(red 20%,blue,30%,green 10%);重复渐变
+	background:-webkit-gradient(radial,x1 y1,r1,x2 y2,r2,form(color),to(color),color-stop(0-1,color),color-stop(0.3,blue));
+
+文本渐变：
+	background:-webkit-gradient(linear,0 0,100%(xxpx) 0,from(),to(),color-stop(),color-stop());设置线性渐变
+	-webkit-text-fill-color:rgba(0,0,0,0);文本填充透明度
+	-webkit-background-clip:text;剪切文本
+
+	background:-webkit-gradient(radial,0 0,100%(xxpx) 0,from(),to(),color-stop(),color-stop());设置径向渐变
+	-webkit-text-fill-color:rgba(0,0,0,0);文本填充透明度
+	-webkit-background-clip:text;剪切文本
+
+2d转换
+transform:scale(0.5,0.5)	缩放元素
+transform:scaleX(0.5)		X缩放
+transform:scaleY(0.5)		Y缩放
+transform:translate(100px,100px)移动
+transform:translateX(100px)	X平移
+transform:translateY(100px)	Y平移
+transform:rotate(10deg)		旋转
+transform:skew(10deg,10deg)	斜切
+transform:skewX(10deg)		X斜切
+transform:skewY(10deg)		Y斜切
+transform-origin:0px 0px;	定义中心点
+
+3d转换
+transform:translate3d(x,y,z);
+transform:translateX(x);   平移
+transform:translateY(y);
+transform:translateZ(z);
+transform:scale3d(x,y,x);
+transform:scaleX(x);   缩放
+transform:scaleY(y);
+transform:scaleZ(z);
+transform:rotate3d(x,y,z,angle);
+transform:rotat
+eX(angle)    旋转
+transform:rotateY(angle);
+transform:rotateZ(angle);
+
+css3过渡属性
+transition:all 1s;
+	可指定属性，all代表所有
+transition-property:	过渡的属性名称
+transition-duration:	过渡花费的时间，默认0
+transition-timing-function过渡效果的时间曲线 默认ease
+transition-delay:	规定过渡效果何时开始，默认0
+
+CSS3倒影：
+box-reflect:none||direction offset mask-box-image
+none:无阴影
+direction:	above(倒影在对象的上边)
+		below(下边)
+		left(左边)
+		right(右边)
+offset:length(用长度值来定义对象之间的间隔)
+mask-box-image:	url(使用绝对或相对地址指定遮罩对象)
+		linear-gradient使用渐变创建图像遮罩
+		radial-gradient使用径向渐变创建遮罩图像
+
+CSS3动画
+animation:animation-name|animation-duration|animation-timing-function|animate-delay|animation-iteration-count|animation-dirction;
+animation:名称 时间 曲线 延迟时间 次数 是否来回
+	animation-name:自定义的name
+	
+	animation-duration:1s或者500ms,自定义
+
+	animation-timing-function:ease(默认)动画以低速开始，然后加快，在结束前变慢
+				sase-in动画以低速开始
+				ease-out动画以低速结束
+				ease-in-out动画以低速开始和结束
+				linear	动画重头到尾的速度是相同的
+				cubic-bezier 在cubic-bezier函数中自己的值。可能的值是从0到1的值
+
+	animation-delay(可选)：1s或者500ms自定义
+
+	animation-iteration-count:num自定义次数
+				infinite无限播放
+
+	animation-dirction:normal默认值，动画正常播放
+			alternate动画轮流反向播放
+
+
+@keyframes myname{
+	form{width:0px}
+	to{width:200px}
+}
+@keyframes myname{
+	0%{}
+	50%{}
+	100%{}
+}
+
+animationend  动画执行完成以后
+animation-fill-mode:none不改变默认值
+		forwards 当动画完成后保持最后一个属性值
+		backwards 在animation-delay所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）
+		both 	 向前和向后填充模式都被应用	
+
+
+
+
+响应式布局：
+	响应式布局就是一个网站能够兼容多个终端，而不是每个终端做一个特定的版本
+优点：
+	面对不同分辨率设备灵活性强
+	能够快捷解决多设备显示适应问题
+	根据不同的显示器设计最适合用户浏览器习惯的页面
+总结：灵活性强，可以在不同的浏览器中展现出最适合的状态，用户体验好
+缺点：
+	兼容各种设备工作量大，效率低
+	加载时间长
+	因为要适应不同的设备，页面的结构可能会有所不同，会导致页面的辨识率不强
+总结：因为要适应各个终端，所以工作量就会变大，影响效率，代码量的变大同时也会使加载的事件变长，而且因为存在不同的状态所以会使用户出现混淆(xiao)的情况
+
+CSS3-Media  Query 实现响应式布局
+1、media query
+	通过不同的媒体类型和条件定义样式表规则，媒体查询让css可以更精确的作用于不同的媒体类型和同一媒体的不同条件
+@media screen and (max-width:){		}
+
+@media (min-width:) and (max-width:){		}
+
+@media screen and (min-width:){		}
+
+适应移动端：
+<meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'>宽度等于设备宽度。初始状态1，用户缩放no
+
+bootStart
+容器
+container	固定宽度（支持响应式）
+container-fluid 100%宽
+行
+row
+列
+xs		<768px	超小
+sm		>=768px 小
+md		>=992px	中
+lg		>=1200px大
+
+col-md-offset-2向右偏移两格
+col-md-push-2 推了两格
+col-md-pull-2 拉了两格
+
+
+
+
+
+Flex布局（弹性盒）：
+容器默认存在两根轴，水平的主轴和垂直的交叉轴；
+任何一个额元素都可以指定为flex布局，行内元素也可以；webkit内核的浏览器，必须加上一个webkit前缀；
+
+注意：设为flex布局以后，子元素的float，clear，vertical-align等属性会失效；
+
+采用flex布局的元素，成为flex容器，里面的所有的子元素自动成为容器成员，成为flex项目；
+
+
+
+1、容器的属性：
+flex-direction：row（主轴在水平方向，起点在左端）|row-reverse（主轴在水平方向，起点在右端）|column（主轴在垂直方向，起点在上沿）|column-reverse（主轴在垂直方向，起点在下沿）
+
+flex-wrap：nowrap（不换行）|wrap（换行，第一行在上方）|wrap-reverse（换行，第一行在下方）
+
+flex-flow：flex-direction和flex-wrap简写  默认值为row nowrap
+
+justify-content（项目在主轴上的对齐方式）：flex-start（左对齐）|flex-end（右对齐）|center（居中）|space-between（两端对齐，项目之间的间隔都相等）|space-around（每个项目两侧的间隔相等，所以项目之间比项目与边框的间隔大一倍）
+
+align-items（属性定义项目在交叉）：flex-start（交叉轴的起点对齐）|flex-end（交叉轴的终点对齐）|center（交叉轴的中点对齐）|baseline（项目的第一行文字的基线对齐）|stretch（默认值）如果项目未设置高度或auto，将会占满整个容器的高度
+
+align-content（定义了多根轴线的对齐方式）：flex-start（与交叉轴的起点对齐）|flex-end（与交叉轴的终点对齐）|conter（与交叉轴的终点对齐）|space-between（与交叉轴两端对齐，轴线之间的间隔平均分布）|space-around（每根轴线两侧的间隔都相等，所以，轴线之间的间隔比轴线与边框的间隔大一些）|stretch（轴线占满整个交叉轴）
+
+
+项目的属性：
+order（定义项目的排序顺序，数值越小，排列越靠前，默认为0）；
+
+flex-grow（定义项目的放大比例，默认为0，即如果存在剩余空间，也不会放大）；
+
+flex-shrink（项目的缩小比例，默认为1，即如果空间不足，项目将缩小）；
+
+flex-basis：项目的本来大小；
+
+flex：是flex-grow,flex-shrink和flex-basis的简写。默认： 0 1 auto；
+
+align-self（允许单个项目与其他项目不一样的对齐方式，覆盖align-items属性）：auto|flex-start|flex-end|center|baseline|stretch
